@@ -1,4 +1,4 @@
-package org.cxz.algorithm;
+package org.cxz.algorithm.sort;
 
 import java.util.Arrays;
 import java.util.concurrent.ForkJoinPool;

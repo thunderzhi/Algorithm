@@ -32,3 +32,4 @@ _ReSharper*/
 packages/
 *.class 
 /.idea/inspectionProfiles/Project_Default.xml
+.idea
