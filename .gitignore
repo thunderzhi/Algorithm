@@ -32,5 +32,6 @@ _ReSharper*/
 packages/
 *.class 
 /.idea/inspectionProfiles/Project_Default.xml
-.idea
+.idea/
+.idea/workspace.xml
 target/
