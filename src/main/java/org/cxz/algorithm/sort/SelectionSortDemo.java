@@ -1,5 +1,7 @@
 package org.cxz.algorithm.sort;
 
+import com.sun.corba.se.impl.activation.ServerMain;
+
 import java.util.Arrays;
 
 /**
@@ -16,10 +18,20 @@ public class SelectionSortDemo {
         System.out.println(Arrays.toString(arr));
     }
     public static void SelectionSort(int[] a){
+        for (int i = 0; i < a.length - 1; i++) {
+            int tmp = 0;
+            int smallindex = i;
+            System.out.println("i "+i+" "+Arrays.toString(a));
+            for (int j = i+1; j < a.length-1 ; j++) {
+                if (a[smallindex]>a[j]){
 
-
-
-
-
+                    smallindex = j;
+                }
+            }
+            System.out.println(i+" times smallest is "+ smallindex);
+            tmp = a[smallindex];
+            a[smallindex]=a[i];
+            a[i]=tmp;
+        }
     }
 }
