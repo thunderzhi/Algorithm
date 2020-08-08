@@ -31,12 +31,10 @@ public class QuickSortDemo {
             if (end>pivot+1) {
                 QuickSort(a, pivot + 1, end);
             }
-
     }
 
     public static int partition(int[] a, int low, int high) {
         System.out.println("low = " + low + " high = " + high);
-
         int key = a[low];
         System.out.println("key value is  a[" + low + "]=  " + key);
         int pivotindex = low;
@@ -65,10 +63,6 @@ public class QuickSortDemo {
             index = low;
             System.out.println("partition key = " + key + " low= " + low + " high= " + high + " " + Arrays.toString(a));
         }
-        if (index == 0) {
-
-        }
-
         return index;
     }
 }
