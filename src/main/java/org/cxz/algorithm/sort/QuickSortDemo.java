@@ -18,16 +18,19 @@ public class QuickSortDemo {
     }
 
     public static void QuickSort(int[] a, int start, int end) {
-        if (end > start) {
+
             int i = start, j = end;
             int pivot = 0;
             pivot = partition(a, start, end);
             System.out.println("**************** strat= " + start + " ********** end= " + end + " *****************************************");
             System.out.println("pivot index = " + pivot + " i= " + i + " j= " + j + " " + Arrays.toString(a));
+            if (pivot-1>start ) {
+                QuickSort(a, start, pivot - 1);
+            }
 
-            QuickSort(a, start, pivot - 1);
-            QuickSort(a, pivot + 1, end);
-        }
+            if (end>pivot+1) {
+                QuickSort(a, pivot + 1, end);
+            }
 
     }
 
@@ -43,7 +46,7 @@ public class QuickSortDemo {
             while (low < high && a[high] > key) {
                 high--;
             }
-            while (low < high && a[low] < key) {
+            while (low < high && a[low] <= key) {
                 low++;
             }
             System.out.println(" high = " + high + " --->" + a[high] + " low= " + low + " ----->" + a[low]);
