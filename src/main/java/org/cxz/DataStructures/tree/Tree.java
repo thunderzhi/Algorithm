@@ -132,5 +132,25 @@ public class Tree {
         // (successor cannot have a left child)
         return true;
     }
-
+    // returns node with next-highest value after delNode
+    // goes to right child, then right child's left descendents
+    private Node getSuccessor(Node delNode)
+    {
+        Node successorParent = delNode;
+        Node successor = delNode;
+        Node current = delNode.rightChild;   // go to right child
+        while(current != null)               // until no more
+        {                                 // left children,
+            successorParent = successor;
+            successor = current;
+            current = current.leftChild;      // go to left child
+        }
+        // if successor not
+        if(successor != delNode.rightChild)  // right child,
+        {                                 // make connections
+            successorParent.leftChild = successor.rightChild;
+            successor.rightChild = delNode.rightChild;
+        }
+        return successor;
+    }
 }
