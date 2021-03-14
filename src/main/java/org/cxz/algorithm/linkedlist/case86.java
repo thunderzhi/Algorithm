@@ -24,27 +24,32 @@ public class case86 {
         }
     }
     public static ListNode partition(ListNode head, int x) {
-        ListNode t2head = new ListNode(0, null);//big
-        ListNode t1head = new ListNode(0, null);//small
-
-        ListNode tail1=t1head,tail2=t2head;
+        ListNode bhead = new ListNode(0, null);//small
+        ListNode ahead = new ListNode(0, null);//big
+        ListNode atail=ahead,btail=bhead;
         ListNode p = head;
-        while(p.next!=null){
-            System.out.println("p is "+p.val);
+        ListNode q = null;
+        while(p!=null){
+            q = p.next;
+            //System.out.println("p is "+p.val);
             if (p.val < x) {
-                tail1.next = p;
-                System.out.println("p add to first ");
-                tail1.next = tail1.next.next;
+                p.next = atail.next;
+                atail.next = p;
+                atail = p;
+                //System.out.println("p add to first ");
+
             }
             else{
-                tail2.next =p;
-                System.out.println("p add to second ");
-                tail2.next = tail2.next.next;
-            }
-            p = p.next;
-        }
+                p.next = btail.next;
+                btail.next = p;
+                btail = p;
 
-        tail1   = t2head.next;
-        return t1head.next;
+                //System.out.println("p add to second ");
+
+            }
+            p = q;
+        }
+        atail.next   = bhead.next;
+        return ahead.next;
     }
 }
