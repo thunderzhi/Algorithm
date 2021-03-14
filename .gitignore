@@ -36,3 +36,4 @@ packages/
 .idea/workspace.xml
 target/
  
+/src/main/java/org/cxz/algorithm/linkedlist/eastereggsHappy.java
