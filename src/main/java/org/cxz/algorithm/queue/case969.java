@@ -33,19 +33,20 @@ public class case969 {
     }
     public List<Integer> pancakeSort(int[] arr) {
 
-        //List<Integer> collect = Arrays.stream(arr).boxed().collect(Collectors.toList());
-        int[] ind = new int[arr.length+1];// ArrayList<>(arr.length + 1);
+        int[] ind = new int[arr.length+1];
          
         ArrayList<Integer> ret=new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
-            //ind.set(arr[i],i);
+
             ind[arr[i]]=i;
         }
         for (int i = arr.length; i >=1; i--) {
             if(ind[i] ==i-1){
+                //判断是否处于正确的位置
                 continue;
             }
             if (ind[i]+1!=1){
+                //本轮最大的待排数，还不处于第一位，需要反转前 ind[i]+1个
                 ret.add(ind[i]+1);
                 reverse(arr,ind[i]+1,ind);
             }
