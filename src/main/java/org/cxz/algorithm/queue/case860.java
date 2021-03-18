@@ -31,11 +31,9 @@ public class case860 {
                     if(cnt5>=1&&cnt10>=1){
                         cnt5-=1;
                         cnt10-=1;
-
                     }
                     else if (cnt5>=3){
                         cnt5 = cnt5-3;
-
                     }
                     else {
                         return false;
