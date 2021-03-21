@@ -36,11 +36,9 @@ public class case227 {
         
 
 
-        if()
+
         return  0;
     }
 
-    public boolean isOp(String op ){
 
-    }
 }

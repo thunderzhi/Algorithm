@@ -20,42 +20,39 @@ public class case20 {
     }
 
     public boolean isvalid(String s){
-        int cnt =0;
-        if(s.length()%2!=0){
-            return false;
-        }
-        if (")}]".contains(String.valueOf(s.charAt(0)))) {
-            return false;
-        }
+        Stack<Character> st = new Stack<>();
+
         for (int i = 0; i < s.length(); i++){
-            char c = s.charAt(i);
-            switch (c){
+            //char c = s.charAt(i);
+            switch (s.charAt(i)){
                 case '(':
-                    cnt+=1;
-                    break;
                 case '[':
-                    cnt+=2;
-                    break;
-                case '{':
-                    cnt+=3;
-                    break;
+                case '{': st.push(s.charAt(i));
+                break;
                 case ')':
-                    cnt-=1;
+                    if(st.isEmpty()||st.peek()!='('){
+                        return false;
+                    }
+                    st.pop();
                     break;
                 case ']':
-                    cnt-=2;
+                    if(st.isEmpty()||st.peek()!='['){
+                        return false;
+                    }
+                    st.pop();
                     break;
                 case '}':
-                    cnt-=3;
+                    if(st.isEmpty()||st.peek()!='{'){
+                        return false;
+                    }
+                    st.pop();
                     break;
                 default:
                     break;
             }
-            if(cnt<0){
-                return false;
-            }
+
         }
-        return cnt ==0 ?true:false;
+        return st.isEmpty() ?true:false;
     }
 
 

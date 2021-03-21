@@ -1,5 +1,6 @@
 package org.cxz.algorithm.stack;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
@@ -21,35 +22,19 @@ public class case145 {
         System.out.println(list.toString());
     }
 
+    //recur
+    public void postorder(TreeNode root,List<Integer> res){
+        if(root==null){
+            return;
+        }
+        postorder(root.left,res);
+        postorder(root.right,res);
+        res.add(root.val);
+    }
+
     public List<Integer> postorderTraversal(TreeNode root) {
-        if(root==null) {
-            return null;
-        }
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        stack.push(root);
-        LinkedList<Integer> list = new LinkedList<>();
-        while(!stack.isEmpty()){
-            TreeNode peek = stack.peek();
-            if(peek.left!=null){
-                stack.push(peek.left);
-                System.out.println("push left "+ peek.left.val);
-
-                continue;
-            }
-            TreeNode tmp = stack.peek();
-            System.out.println("pop "+ tmp);
-            if (tmp.right!=null){
-
-                stack.push(tmp.right);
-                System.out.println("push right "+ tmp.right.val);
-                continue;
-            }
-            else{
-                TreeNode pop = stack.pop();
-                list.add(pop.val);
-            }
-
-        }
-        return list;
+        ArrayList<Integer> res = new ArrayList<>();
+        postorder(root,res);
+        return res;
     }
 }
