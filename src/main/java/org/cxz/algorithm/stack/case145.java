@@ -31,7 +31,7 @@ public class case145 {
         postorder(root.right,res);
         res.add(root.val);
     }
-
+    //6min
     public List<Integer> postorderTraversal(TreeNode root) {
         ArrayList<Integer> res = new ArrayList<>();
         if(root==null){

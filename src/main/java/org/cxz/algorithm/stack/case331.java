@@ -15,6 +15,7 @@ public class case331 {
         boolean validSerialization = new case331().isValidSerialization(s);
         System.out.println(validSerialization);
     }
+    //16min
     public boolean isValidSerialization(String preorder) {
         Stack<String> s = new Stack<>();
         String[] split =preorder.split(",");

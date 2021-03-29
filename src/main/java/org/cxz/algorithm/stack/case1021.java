@@ -16,6 +16,7 @@ public class case1021 {
     public String removeOuterParentheses(String S) {
         StringBuilder ret =new StringBuilder();
         for (int i = 0 ,pre =0,cnt =0; i < S.length() ; i++) {
+            //pre 是序列开始
             if(S.charAt(i)=='('){
                 cnt+=1;
             }
@@ -27,7 +28,7 @@ public class case1021 {
             }
             int begin = pre+1;
             int end = i;
-            ret.append(S.substring(begin,end)) ;
+            ret.append(S.substring(begin,end)) ;//从begin开始，截到end-1
             pre = i+1;
         }
         return ret.toString();
