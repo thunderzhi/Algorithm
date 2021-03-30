@@ -66,5 +66,4 @@ public class case227 {
         }
         return num.peek();
     }
-
 }
