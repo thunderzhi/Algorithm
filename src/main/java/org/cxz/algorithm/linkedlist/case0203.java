@@ -34,7 +34,7 @@ public class case0203 {
         System.out.println(node.val);
         q1 = new LinkedList<>();
         q2 = new LinkedList<>();
-        ListNode p = node;
+        p = node;
         while(p!=null){
             q2.offerLast(p);
             p=p.next;

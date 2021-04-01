@@ -1,8 +1,6 @@
 package org.cxz.algorithm.stack;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author cxz
@@ -13,7 +11,9 @@ import java.util.Stack;
  */
 public class case636 {
     public static void main(String[] args) {
-
+        String s = "0:start:0,1:start:2,1:end:5,0:end:6" ;
+        String[] split = s.split(",");
+        int[] ints = new case636().exclusiveTime(2,new ArrayList<>(Arrays.asList(split)) );
     }
 
     public int[] exclusiveTime(int n, List<String> logs) {
@@ -29,6 +29,7 @@ public class case636 {
             if (!vid.isEmpty()){
                 res[vid.peek()]+=timestamp-pre+("end".equals(statusstr)?1:0);
             }
+
             pre = timestamp +("end".equals(statusstr)?1:0);
             if ("start".equals(statusstr)){
                 vid.push(id);
