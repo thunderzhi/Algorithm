@@ -42,14 +42,5 @@ public class caseprinttreetop2down {
             ans.add(integers);
         }
         return ans;
-        if(roo == null){
-            return ans;
-        }
-        if(ans.size)
-
-
-
-
-
     }
 }
