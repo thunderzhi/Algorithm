@@ -41,6 +41,9 @@ public class caseprinttreetop2down {
             }
             ans.add(integers);
         }
+        List<Integer> integers = ans.get(0);
+
+
         return ans;
     }
 }
