@@ -41,6 +41,8 @@ public class case1124 {
                     f.put(cnt,0);
                 }
                 else{
+                    //f.get(n) 代表以n为结尾的最长的序列长度
+                    //计算f(n)=f(n-1)+pos(n)-pos(n-1)
                     int i1 = f.get(cnt - 1) + (i - ind.get(cnt - 1));
                     f.put(cnt,i1);
                 }
@@ -49,6 +51,7 @@ public class case1124 {
                 //没有出现过cnt-1，continue
                 continue;
             }//否则就出现过cnt-1
+            //计算当前f(n)和ans的max
             ans = Math.max(ans,i - ind.get(cnt-1)+f.get(cnt-1));
         }
         return ans;
