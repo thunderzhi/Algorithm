@@ -17,32 +17,20 @@ public class case703 {
 //[[1,[]],[-3],[-2],[-4],[0],[4]]
 
     }
-    public KthLargest(int k, int[] nums) {
+    public void KthLargest(int k, int[] nums) {
         pq = new PriorityQueue<>((o1,o2)->o1-o2);
         _k = k;
         for (int num : nums) {
-            if(pq.size()<k){
-                pq.offer(num);
-                continue;
-            }
-            if(num>pq.peek()){
-                pq.poll();
-                pq.offer(num);
-            }
+            add(num);
         }
     }
 
     public int add(int val) {
-        if(pq.size()<_k){
-            pq.offer(val);
-            return pq.peek();
-        }
-
-        if(val>=pq.peek()){
+        pq.offer(val);
+        while(pq.size()>_k){
             pq.poll();
-            pq.offer(val);
-
         }
+
 
         return pq.peek();
     }
