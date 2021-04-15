@@ -35,44 +35,18 @@ public class case295 {
 //    findMedian() -> 2
     public void addNum(int num) {
         //设定 pb ---ps   调整 pb-ps=1;
-        if(pb.isEmpty()||ps.isEmpty()){
-            if(pb.isEmpty()&&ps.isEmpty()){
-                pb.offer(num);
-                return;
+        ps.offer(num);
+        pb.offer(ps.poll());
+        while(pb.size()>ps.size()){
+            if(pb.size()==ps.size()){
+                break;
             }
-            if (!ps.isEmpty()&&num<ps.peek()){
-                pb.offer(num);
-                return ;
+            if(pb.size()-ps.size()==1){
+                break;
             }
-            if(!pb.isEmpty()&&num>pb.peek()){
-                ps.offer(num);
-                return;
-            }
+            ps.offer(pb.poll());
         }
 
-        if((pb.size()-ps.size()) ==1){
-//插入判断插入到pb,ps
-            if (pb.peek()>num){
-                ps.offer(pb.poll());
-                pb.offer(num);
-            }
-            else{
-                ps.offer(num);
-            }
-            return;
-        }
-        if(pb.size()==ps.size()){
-            //插入判断插入到pb,ps
-            if (pb.peek()>=num||ps.peek()>=num){
-                pb.offer(num);
-            }
-            if(ps.peek()<num){
-
-                pb.offer(ps.poll());
-                ps.offer(num);
-            }
-            return;
-        }
     }
 
     public double findMedian() {
