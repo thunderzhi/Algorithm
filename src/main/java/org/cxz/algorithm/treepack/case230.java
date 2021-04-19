@@ -1,7 +1,5 @@
 package org.cxz.algorithm.treepack;
 
-import org.cxz.DataStructures.tree.Tree;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,23 +8,18 @@ import java.util.List;
  * @Title:
  * @Package
  * @Description:
- * @date 2021/4/19 19:39
+ * @date 2021/4/19 19:57
  */
-public class caseO4O5 {
+public class case230 {
 
-    public boolean isValidBST(TreeNode root) {
+    public int kthSmallest(TreeNode root, int k) {
         ArrayList<TreeNode> ans = new ArrayList<>();
         List<TreeNode> inorder = inorder(root,ans);
-        for (int i = 0; i < inorder.size(); i++) {
 
-            if(inorder.get(i).val>inorder.get(i+1).val){
-                return false;
-            }
-        }
-        return true;
+        return inorder.get(k-1).val;
     }
 
-    public List<TreeNode> inorder(TreeNode root,List<TreeNode> ans){
+    public List<TreeNode> inorder(TreeNode root, List<TreeNode> ans){
         if(root == null){
             return ans;
         }
