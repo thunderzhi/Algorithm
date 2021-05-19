@@ -20,8 +20,7 @@ public class case148 {
         head.next.next =new ListNode(1);
         head.next.next.next =new ListNode(3);
         ListNode listNode = new case148().sortList(head);
-        System.out.println("listNode = " + listNode);
-        
+
 
     }
     public ListNode sortList(ListNode head) {
@@ -48,7 +47,6 @@ public class case148 {
             fast = fast.next.next;
         }
         ListNode mid = slow;
-        System.out.println("mid.val = " + mid.val);
         ListNode left = sortList(head,mid);
         ListNode right = sortList(mid,tail);
 
