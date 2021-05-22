@@ -33,6 +33,7 @@ public class case148 {
         mid = (max+min)>>1;
 
 
+        return ret.next = head;
 
 
     }
