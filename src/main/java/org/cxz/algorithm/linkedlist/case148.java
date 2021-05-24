@@ -1,4 +1,9 @@
-package org.cxz.algorithm.linkedlist;
+﻿package org.cxz.algorithm.linkedlist;
+
+import javafx.collections.transformation.SortedList;
+
+import java.awt.*;
+import java.util.List;
 
 /**
  * @author cxz
@@ -9,9 +14,22 @@ package org.cxz.algorithm.linkedlist;
  */
 public class case148 {
     public static void main(String[] args) {
+        //[4,2,1,3]
+        ListNode head = new ListNode(4);
+        head.next = new ListNode(2);
+        head.next.next =new ListNode(1);
+        head.next.next.next =new ListNode(3);
+        ListNode listNode = new case148().sortList(head);
+
 
     }
+    public ListNode sortList(ListNode head) {
+        return sortList(head,null);
+    }
+
+
     public ListNode sortList(ListNode head,ListNode tail) {
+
         if(head==null){
             return null ;
         }
@@ -28,7 +46,6 @@ public class case148 {
             fast = fast.next.next;
         }
         ListNode mid = slow;
-        // System.out.println("mid.val = " + mid.val);
         ListNode left = sortList(head,mid);
         ListNode right = sortList(mid,tail);
 
