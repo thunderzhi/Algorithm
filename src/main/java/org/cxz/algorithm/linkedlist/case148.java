@@ -1,4 +1,4 @@
-package org.cxz.algorithm.linkedlist;
+﻿package org.cxz.algorithm.linkedlist;
 
 import javafx.collections.transformation.SortedList;
 
@@ -33,8 +33,7 @@ public class case148 {
         if(head==null){
             return null ;
         }
-        System.out.println("head.val = " + head.val);
-
+        // System.out.println("head.val = " + head.val);
         if(head.next== tail){
             head.next =null;
             return head;
