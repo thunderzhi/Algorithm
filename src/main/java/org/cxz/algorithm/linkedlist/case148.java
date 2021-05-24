@@ -11,30 +11,46 @@ public class case148 {
     public static void main(String[] args) {
 
     }
-    public ListNode sortList(ListNode head) {
+    public ListNode sortList(ListNode head,ListNode tail) {
         if(head==null){
             return null ;
         }
-        ListNode ret =new ListNode(0);
-        ret.next = head;
-        int max = head.val;
-        int min = head.val;
-        int mid = 0;
-        ListNode p = head.next;
-        while(p!=null){
-            if(p.val<min){
-                min = p.val;
-            }
-            if(p.val>max){
-                max = p.val;
-            }
-            p =p.next;
+        // System.out.println("head.val = " + head.val);
+        if(head.next== tail){
+            head.next =null;
+            return head;
         }
-        mid = (max+min)>>1;
+        ListNode ret =new ListNode(0);
+        ListNode slow =head;
+        ListNode fast =head;
+        while(fast!=tail&&fast.next!=tail){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode mid = slow;
+        // System.out.println("mid.val = " + mid.val);
+        ListNode left = sortList(head,mid);
+        ListNode right = sortList(mid,tail);
 
+        return merge(left,right);
+    }
 
-        return ret.next = head;
-
-
+    public ListNode merge(ListNode left,ListNode right ){
+        ListNode ret = new ListNode(0);
+        ListNode p = ret;
+        while(left!=null&&right!=null){
+            if (left.val<right.val){
+                p.next = left;
+                left = left.next;
+                p = p.next;
+            }
+            else{
+                p.next = right;
+                right = right.next;
+                p = p.next;
+            }
+        }
+        p.next = left!=null?left: right;
+        return ret.next;
     }
 }
