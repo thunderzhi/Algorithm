@@ -1,9 +1,4 @@
-﻿package org.cxz.algorithm.linkedlist;
-
-import javafx.collections.transformation.SortedList;
-
-import java.awt.*;
-import java.util.List;
+package org.cxz.algorithm.linkedlist;
 
 /**
  * @author cxz
