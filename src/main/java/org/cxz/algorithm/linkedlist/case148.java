@@ -1,4 +1,4 @@
-﻿package org.cxz.algorithm.linkedlist;
+package org.cxz.algorithm.linkedlist;
 
 import javafx.collections.transformation.SortedList;
 
