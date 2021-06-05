@@ -20,7 +20,7 @@ public class caseO1625 {
             this.val = v;
         }
    }
-   public class DList{
+   public static class DList{
        private Node ret;
        private int size;
 
