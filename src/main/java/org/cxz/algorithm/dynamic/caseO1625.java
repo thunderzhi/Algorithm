@@ -20,15 +20,65 @@ public class caseO1625 {
             this.val = v;
         }
    }
+   public class DList{
+       private Node ret;
+       private int size;
+
+       private Node tail;
+       public DList(){
+            this.ret = new Node(-1,-1);
+            this.size=0;
+       }
+
+       public void addFirst(Node node){
+            if(ret.next==null){
+                ret.next = node;
+                node.prev = ret;
+                tail = node;
+                size++;
+                return;
+            }
+            Node p = ret.next;
+            node.next =p;
+            ret.next = node;
+            p.prev = node;
+            node.prev = ret;
+            size++;
+            return;
+       }
+
+       public void remove(Node node){
+           if(node==tail){
+               tail = tail.prev ;
+           }
+           Node p = node.prev;
+           Node q = node.next;
+           p.next = q;
+           if(q!=null){
+               q.prev = p;
+           }
+           size--;
+       }
+
+       public Node removeLast(){
+           Node res = tail;
+           remove(tail);
+           return res;
+       }
+       public int size(){
+           return this.size;
+       }
+   }
+
 
    public static class LRUCache {
         private HashMap<Integer, Node> map;
         private int cap;
-        private LinkedList<Node> cache;
+        private DList cache;
         public LRUCache(int capacity) {
             this.cap = capacity;
             this.map = new HashMap<>();
-            this.cache = new LinkedList<>();
+            this.cache = new DList();
         }
 
         public int get(int key) {
