@@ -21,20 +21,23 @@ public class case23 {
             return null;
         }
         ListNode h = new ListNode(0);
-        ListNode t = h;
+        ListNode p = h;
 
         PriorityQueue<ListNode> pq = new PriorityQueue<>((o1, o2) -> o1.val - o2.val);
-        for (ListNode list : lists) {
-            while(list!=null){
-                //if(list.val)   to be continue.............
-                pq.offer(list);
-                list= list.next;
-            }
+        for (ListNode x : lists) {
+           if (x!=null){
+               pq.offer(x);
+           }
         }
-        while (pq.size()>0){
-            ListNode poll = pq.poll();
-            t.next = poll;
-            t = t.next;
+
+        while (!pq.isEmpty()){
+            ListNode cur = pq.peek();
+            p.next = cur;
+            pq.poll();
+            p = cur;
+            if (cur.next!=null){
+                pq.offer(cur.next);
+            }
         }
         return h.next;
     }
