@@ -49,10 +49,6 @@ public class case315 {
             arr.add(new Data(i,0,nums[i]));
             temp.add(new Data(0,0,0));
         }
-
-
-
-       // System.out.println("temp = " + Arrays.asList(temp));
         merge(arr,0,nums.length-1);
         int[] res = new int[nums.length];
         List<Integer> ret = new ArrayList<>();
@@ -62,7 +58,6 @@ public class case315 {
         for (int i = 0; i < res.length; i++) {
             ret.add(res[i]);
         }
-
         return ret;
     }
 
@@ -79,12 +74,16 @@ public class case315 {
                 Data data = temp.get(k);
                 arr.get(p1).cnt += r-p2+1;
                 data.val = arr.get(p1).val;
+                data.ind = arr.get(p1).ind;
+                data.cnt = arr.get(p1).cnt;
                 k++;
                 p1++;
             }
             else {
                 Data data = temp.get(k);
                 data.val = arr.get(p2).val;
+                data.ind = arr.get(p2).ind;
+                data.cnt = arr.get(p2).cnt;
                 k++;
                 p2++;
             }
@@ -92,10 +91,9 @@ public class case315 {
         for (int i = l; i <=r ; i++) {
             Data a1 = arr.get(i);
             Data t1 = temp.get(i);
-            //a1.cnt = t1.cnt;
-            //a1.ind = t1.ind;
+            a1.cnt = t1.cnt;
+            a1.ind = t1.ind;
             a1.val = t1.val;
-
         }
         return ;
     }
