@@ -23,10 +23,18 @@ public class case315 {
             this.val = val;
         }
 
+        @Override
+        public String toString() {
+            return "Data{" +
+                    "ind=" + ind +
+                    ", cnt=" + cnt +
+                    ", val=" + val +
+                    '}';
+        }
     }
     private List<Data> temp;
     public static void main(String[] args) {
-        int[] a = new int[]{5,2,6,1};
+        int[] a = new int[]{0,2,1};
 
         List<Integer> res = new case315().countSmaller(a);
 
@@ -44,7 +52,7 @@ public class case315 {
 
 
 
-        System.out.println("temp = " + temp);
+       // System.out.println("temp = " + Arrays.asList(temp));
         merge(arr,0,nums.length-1);
         int[] res = new int[nums.length];
         List<Integer> ret = new ArrayList<>();
@@ -68,14 +76,14 @@ public class case315 {
         int k = l ,p1 = l, p2 = mid+1;
         while(p1<=mid||p2<=r){
             if((p2>r)||(p1<=mid&&arr.get(p1).val>arr.get(p2).val)){
-                Data data = temp.get(p1);
-                data.cnt += r-p2+1;
+                Data data = temp.get(k);
+                arr.get(p1).cnt += r-p2+1;
                 data.val = arr.get(p1).val;
                 k++;
                 p1++;
             }
             else {
-                Data data = temp.get(p2);
+                Data data = temp.get(k);
                 data.val = arr.get(p2).val;
                 k++;
                 p2++;
@@ -84,8 +92,8 @@ public class case315 {
         for (int i = l; i <=r ; i++) {
             Data a1 = arr.get(i);
             Data t1 = temp.get(i);
-            a1.cnt = t1.cnt;
-            a1.ind = t1.ind;
+            //a1.cnt = t1.cnt;
+            //a1.ind = t1.ind;
             a1.val = t1.val;
 
         }
