@@ -1,5 +1,7 @@
 package org.cxz.algorithm.array;
 
+import java.util.Arrays;
+
 /**
  * @author cxz
  * @Title:
@@ -11,6 +13,8 @@ public class case283 {
 
     public static void main(String[] args) {
         //[0,1,0,3,12]
+        int[] ints = {1,0,1};
+        new case283().moveZeroes(ints);
     }
 
     public void moveZeroes(int[] nums) {
@@ -18,25 +22,20 @@ public class case283 {
             return;
         }
         int p=0,q =0;
-        int length = nums.length;
-        q = p+1;
-        while(q<length){
-            if(nums[q]==0){
-                q++;
-                continue;
-            }
-            if(nums[p]==0&&nums[q]!=0){
+        int n = nums.length;
+
+        while (q<n){
+            if(nums[q]!=0){
+                int temp =nums[p];
                 nums[p] = nums[q];
-                nums[q] =0;
-                p = q;
-                q++;
-                continue;
-            }
-            if(nums[p]!=0){
+                nums[q] =temp;
                 p++;
             }
+            q++;
+
         }
 
+        System.out.println("nums = " + Arrays.toString(nums));
     }
 
 }
