@@ -27,11 +27,9 @@ public class case035 {
     }
 
     public int searchInsert(int[] nums, int target) {
-        if (nums.length==0){
-            return 0;
-        }
+
         int l = 0 ; int r = nums.length-1;
-        while (l<r){
+        while (l<=r){
             int mid = (l+r)>>1;
             if(nums[mid]==target){
                 return mid;
