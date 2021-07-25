@@ -20,7 +20,12 @@ public class case475 {
         for (int i = 0; i < houses.length ; i++) {
             int x = houses[i];
             int j = binarysearch01(heaters,x);
+            // left present the distance between houses[i] and  the first heater index bigger than houses[i],
+            // if not exist the first bigger element ,
+            // left present the distance between houses[i] and the last heater index small than houses[i] .
             int left =Math.abs(x-heaters[j]);
+            // right present the distance between house[i] and the former heater.
+            // when j equal zero,heater[j-1] is illegal.So choose the bigger one.
             int right = j==0?left+1:x-heaters[j-1];
             ans = Math.max(ans,Math.min(left,right));
         }
