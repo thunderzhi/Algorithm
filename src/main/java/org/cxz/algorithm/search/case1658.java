@@ -23,15 +23,19 @@ public class case1658 {
         presumr[0] =0;
 
         for (int i = 0; i < nums.length; i++) {
-            presuml[i+1] = presuml[i]+nums[i];
+            presuml[i+1] = presuml[i]+nums[i];//calc presum from left
         }
 
         System.out.println("Arrays.toString(presuml) = " + Arrays.toString(presuml));
         for (int i = nums.length-1; i >=0 ; i--) {
-            presumr[nums.length-i] = presumr[nums.length-i-1] + nums[i];
+            presumr[nums.length-i] = presumr[nums.length-i-1] + nums[i];//calc presum from right
         }
         System.out.println("Arrays.toString(presumr) = " + Arrays.toString(presumr));
         int ans = -1;
+        //travel from left presum ,then try to find a result equal (x-presuml[i]) from right presum
+        //if exist should return j
+        //(i+j) maybe the result but we should check i+j bigger than length
+        //if ans is bigger than (i+j),we shoule replace ans with (i+j)
         for (int i = 0; i < presuml.length; i++) {
             int j = binarysearch(presumr, x - presuml[i]);
             if(j==-1){
