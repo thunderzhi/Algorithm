@@ -31,26 +31,35 @@ public class case1367 {
          ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 
-    public static Stack<TreeNode> stack = new Stack<>();
+
     public static void main(String[] args) {
 
     }
 
     public boolean isSubPath(ListNode head, TreeNode root) {
-
+        if (head==null){
+            return true;
+        }
+        if (root == null){
+            return false;
+        }
+        if (head.val==root.val&&judge(root,head)){
+            return true;
+        }
+        return isSubPath(head,root.left)||isSubPath(head,root.right);
     }
 
-    public void findNode(TreeNode tn,ListNode ln){
-        if (tn==null&&ln==null){
-            return ;
+    public boolean judge(TreeNode root,ListNode head){
+        if (head == null){
+            return true;
         }
-
-        if (tn.val==ln.val){
-            stack.push(tn);
-            if (tn.left==)
+        if (root == null){
+            return false;
         }
-
-
+        if (head.val!=root.val){
+            return false;
+        }
+        return judge(root.left,head.next)||judge(root.right,head.next);
     }
 
 }
