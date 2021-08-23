@@ -1,6 +1,7 @@
 package org.cxz.algorithm.sort;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * @author cxz
@@ -65,4 +66,7 @@ public class QuickSortDemo {
         }
         return index;
     }
+
+
+
 }
