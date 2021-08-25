@@ -21,14 +21,18 @@ public class case283 {
         if (nums.length==0){
             return;
         }
+        //p++ until nums[p]==0
         int p=0,q =0;
         int n = nums.length;
 
         while (q<n){
             if(nums[q]!=0){
-                int temp =nums[p];
-                nums[p] = nums[q];
-                nums[q] =temp;
+                if (p!=q){
+                    nums[p] = nums[q];
+                    nums[q] = 0;
+                    //swap(nums,p,q);
+                }
+
                 p++;
             }
             q++;
@@ -36,6 +40,12 @@ public class case283 {
         }
 
         System.out.println("nums = " + Arrays.toString(nums));
+    }
+
+    private void swap(int[] a ,int i,int j){
+        int b = a[i];
+        a[i] = a[j];
+        a[j] = b;
     }
 
 }
