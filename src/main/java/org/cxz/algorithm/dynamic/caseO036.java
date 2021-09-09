@@ -41,7 +41,7 @@ public class caseO036 {
         pre = null;//pre point to the last ele
         inorder(root);
 
-        //link first and last  return 
+        //link first and last  return
         pre.right= head;
         head.left = pre;
         return head;
