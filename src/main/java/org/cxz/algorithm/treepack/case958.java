@@ -17,26 +17,6 @@ public class case958 {
     }
 
 
-    public int getCount(TreeNode node){
-        if(node==null){
-            return  0;
-        }
-
-        return getChildNodecount(node);
-
-    }
-
-    public int getChildNodecount(TreeNode node){
-        if (node==null){
-            return 0;
-        }
-
-        int left = getChildNodecount(node.left);
-        int right = getChildNodecount(node.right);
-        return left+right+1;
-
-    }
-
     ///BFS  BFS when u get first null,after that u get another not null node
     // it represents that its not a completeTree
     public boolean isCompleteTreeBFS(TreeNode root){
@@ -73,12 +53,51 @@ public class case958 {
         // 2 use formula to validate
         // 3 recursive
 
+        if(root==null){
+            return true;
+        }
 
+        int total = getCount(root);
+        int cnt =1;
+        int m =1;
+        while(cnt+2*m<=total){
+            m*=2;
+            cnt += m;
+        }
+
+        return judge(root,cnt,m);
 
 
 
     }
 
 
+    public boolean judge(TreeNode root,int n ,int m){
+        if(root== null) {
+            return n==0;
+        }
+        if (n==0){
+            return  false;
+        }
+        if(n==1) {
+            return root.left==null &&root.right==null ;
+        }
 
+        int k =Math.max(0,2*m-1) ;
+        int l = Math.min(m,n-k);
+        int r = n-k-l;
+
+        return judge(root.left,(k-1)/2+l,m/2)&&judge(root.right,(k-1)/2+r,m/2);
+
+    }
+
+
+    public int getCount(TreeNode root){
+        if(root == null){
+            return 0;
+        }
+
+        return getCount(root.left)+ getCount(root.right)+1;
+
+    }
 }
