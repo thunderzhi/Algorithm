@@ -25,11 +25,17 @@ public class case437 {
             return 0;
         }
         sum +=root.val;
+        System.out.println("sum = " + sum+" targetsum ="+targetSum    );
         int ans = map.getOrDefault(sum-targetSum,0);
+        System.out.println("map["+(sum-targetSum)+"] ans = " + ans);
+        System.out.println("sum = " + sum+" map[sum] 1 bef ="+map.get(sum)    );
         map.put(sum,map.getOrDefault(sum,0)+1);
+        System.out.println("sum = " + sum+" map[sum] 1 aft ="+map.get(sum)    );
         ans += count(root.left,sum,targetSum);
         ans += count(root.right,sum,targetSum);
-        map.put(sum,map.getOrDefault(sum,0)+1);
+        System.out.println("sum = " + sum+" map[sum] 2 bef ="+map.get(sum)    );
+        map.put(sum,map.getOrDefault(sum,0)-1);
+        System.out.println("sum = " + sum+" map[sum] 2 aft ="+map.get(sum)    );
         return ans;
     }
 
