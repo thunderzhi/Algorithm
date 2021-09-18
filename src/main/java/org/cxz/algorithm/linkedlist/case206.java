@@ -16,6 +16,12 @@ public class case206 {
         node.next.next = new ListNode(3);
         node.next.next.next = new ListNode(4);
         node.next.next.next.next = new ListNode(5);
+
+        int linkLength = LinkListCommon.getLinkLength(node);
+        System.out.println("linkLength = " + linkLength);
+        ListNode node2 = new ListNode(1,null);
+          linkLength = LinkListCommon.getLinkLength(node2);
+        System.out.println("linkLength = " + linkLength);
         ListNode head= node;
 //        while (node!=null){
 //            System.out.println(" val "+node.val);

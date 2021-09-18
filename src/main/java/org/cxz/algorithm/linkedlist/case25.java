@@ -44,6 +44,11 @@ public class case25 {
 
     public static ListNode reverseKGroup(ListNode head, int k) {
         ListNode ret = new ListNode(0, head),p=ret,q=p.next;
+        //create a virtual node before head;
+        //at first p point to the virtual node,q point to the head;
+        //reverseN will return a new head after reverse and p.next will link to this head
+        // when p.next not equal q ,p should point to q node,then q should go next;
+        //
         while ((p.next=reverseN(q,k))!=q){
             p =q;
             q =p.next;
