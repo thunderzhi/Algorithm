@@ -23,9 +23,9 @@ public class case313 {
         int[] p = new int[primes.length];
         List<Integer> data = new ArrayList<>();
         data.add(1);
-        int ans = Integer.MAX_VALUE;
+        int ans = 1;// Initial value whatever it is, but not too small
         while(data.size()<n){
-            ans = data.get(p[0])*primes[0];
+            ans = data.get(p[0])*primes[0];// ans must be seted in every loop
             for(int i=1;i<primes.length;i++){
                 ans = Math.min(ans, data.get(p[i])*primes[i]);
             }
