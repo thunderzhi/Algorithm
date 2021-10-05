@@ -36,15 +36,12 @@ public class case542 {
                 if(x<0||y<0||x>n-1||y>m-1){
                     continue;//out of board
                 }
-
                 if(visit[x][y]!=-1){
                     continue;// this visited
                 }
                 visit[x][y] = t.val+1;
                 queue.offer(new Data(x,y,visit[x][y]));
-
             }
-
             queue.poll();
         }
         return visit;
@@ -62,7 +59,6 @@ public class case542 {
     }
 
     public void initqueue(int[][] mat,int n,int m,Queue queue,int[][] visit){
-
         for(int i =0;i<n;i++){
             for(int j =0;j<m;j++){
                 if(mat[i][j]==0){
@@ -74,6 +70,5 @@ public class case542 {
                 }
             }
         }
-
     }
 }
