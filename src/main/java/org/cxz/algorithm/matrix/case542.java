@@ -14,20 +14,25 @@ public class case542 {
     public static void main(String[] args) {
 
     }
-
+    public class Data{
+        public int i;
+        public int j;
+        public int val;
+        Data(int x, int y,int v){
+            i =x;
+            j =y;
+            val= v;
+        }
+    }
     public int[][] updateMatrix(int[][] mat) {
-
         int n = mat.length;
         int m = mat[0].length;
         Queue<Data> queue = new LinkedList<Data>();
-
         int[][] visit = new int[n][m];
         //queue
         //Visit[][]
         initqueue(mat,n,m,queue,visit);
-
         int[][] dir = {{1,0},{-1,0},{0,-1},{0,1}};
-
         while(!queue.isEmpty()){
             Data t = queue.peek();
             for(int k =0;k<4;k++){
@@ -45,19 +50,7 @@ public class case542 {
             queue.poll();
         }
         return visit;
-
     }
-    public class Data{
-        public int i;
-        public int j;
-        public int val;
-        Data(int x, int y,int v){
-            i =x;
-            j =y;
-            val= v;
-        }
-    }
-
     public void initqueue(int[][] mat,int n,int m,Queue queue,int[][] visit){
         for(int i =0;i<n;i++){
             for(int j =0;j<m;j++){
