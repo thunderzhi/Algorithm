@@ -13,7 +13,7 @@ public class case069 {
 
     }
 
-
+    // classic binary
     public int mySqrt(int x) {
         int l =0;
         int r =x ;
@@ -31,6 +31,7 @@ public class case069 {
 
     }
 
+    //newton iteration
     public int nt(int x){
         if (x == 0) {
             return 0;
@@ -46,15 +47,42 @@ public class case069 {
         return (int) x0;
     }
 
+    //01 solution
+    public int binary_01(int x){
+        if(x<=1){
+            return x;
+        }
+        int l = 0;
+        int r = x;
 
+        while(r -l>3){
+            int mid = l+((r-l)>>1);
 
-
-
-
-
-
-
-
-
-
+            if(mid>=x/mid){
+                r = mid;
+            }
+            else{
+                l=mid+1;
+            }
+        }
+        int res = l ;
+        //System.out.println("l= "+l+ " r =" +r);
+        for(int i = l;i<=r;i++){
+            if(i==0){
+                continue;
+            }
+            if(i<x/i){
+                continue;
+            }
+            else if(i==x/i){
+                res = i;
+                return i;
+            }
+            else{
+                res =i-1;
+                return res;
+            }
+        }
+        return res;
+    }
 }
