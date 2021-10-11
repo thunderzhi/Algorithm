@@ -17,7 +17,6 @@ public class binarySearch01 {
     public int binarySearch_01(int[] arr,int x){
         int head = 0;
         int tail = arr.length-1;
-
         while(tail-head>3){
             int mid = head+(tail-head)/2;
             if(arr[mid]>=x){
@@ -31,7 +30,6 @@ public class binarySearch01 {
             if(arr[i]>=x){
                 return i;
             }
-
         }
         return  -1;
     }

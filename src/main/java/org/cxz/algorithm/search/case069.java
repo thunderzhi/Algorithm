@@ -85,4 +85,23 @@ public class case069 {
         }
         return res;
     }
+    //边界问题 要处理好 ，不同的==位置，最后取的结果亦不相同 思路很不错，但是这个时间复杂度不够好
+    public int mysqrt_cap(int x){
+        double head =0;
+        double tail =x;
+        double mid=0;
+        for (int i = 0; i < 100; i++) {
+            mid = head+(tail-head)/2.0;
+            if(mid<=x/mid){
+                head = mid;
+            }
+            else{
+                tail =mid;
+            }
+        }
+
+       return (int) Math.floor(head);
+
+    }
+
 }
