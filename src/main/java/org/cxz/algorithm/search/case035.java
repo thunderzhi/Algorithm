@@ -44,5 +44,26 @@ public class case035 {
         return l;
     }
 
+    public int searchInsert_01improve(int[] nums, int target) {
+        int head = 0;
+        int tail = nums.length -1;
+        int mid = 0;
+        while(tail-head>3){
+            mid = head+(tail-head)/2;
 
+            if(nums[mid]>=target){
+                tail= mid;
+            }
+            else{
+                head = mid+1;
+            }
+        }
+        int res = nums.length;
+        for(int i= head;i<=tail;i++){
+            if(nums[i]>=target){
+                return i;
+            }
+        }
+        return res;
+    }
 }
