@@ -2,6 +2,7 @@ package org.cxz.algorithm.sort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -33,16 +34,19 @@ public class case315 {
         }
     }
     private List<Data> temp;
+    private int[][] data;//transform
+    private int[][] tmp;//tmp
     public static void main(String[] args) {
-        int[] a = new int[]{0,2,1};
+        int[] a = new int[]{5,2,6,1};
 
-        List<Integer> res = new case315().countSmaller(a);
+        List<Integer> res = new case315().countSmaller2(a);
 
         System.out.println("res = " + Arrays.asList(res));
 
     }
 
     public List<Integer> countSmaller(int[] nums) {
+
         List<Data> arr = new ArrayList<>();
         temp = new ArrayList<>();
         for (int i = 0; i <nums.length; i++) {
@@ -97,4 +101,60 @@ public class case315 {
         }
         return ;
     }
+    public void merge2(int[][] arr,int l ,int r){
+        if(l>=r){
+            return;
+        }
+        int mid =(l+r)>>1;
+        merge2(arr,l,mid);
+        merge2(arr,mid+1,r);
+        int k = l ,p1 = l, p2 = mid+1;
+        while(p1<=mid||p2<=r){
+            if((p2>r)||(p1<=mid&&arr[p1][2]>arr[p2][2])){
+                int[] _data = tmp[k];
+                arr[p1][1] += r-p2+1;
+                tmp[k++]= arr[p1++];
+            }
+            else {
+                int[] _data = tmp[k];
+                tmp[k++]= arr[p2++];
+            }
+        }
+        for (int i = l; i <=r ; i++) {
+            arr[i]=tmp[i];
+        }
+        return ;
+    }
+
+
+    public List<Integer> countSmaller2(int[] nums){
+        data = new int[nums.length][3];//0 index, 1 count ,2 value;
+        tmp = new int[nums.length][3];
+        List<Integer> ans  =new ArrayList<>();
+        for (int i = 0; i <nums.length; i++) {
+            int[] t = new int[]{i,0,nums[i]};
+            data[i]=t;
+            tmp[i]=new int[]{0,0,0};
+        }
+
+        merge2(data,0,data.length-1);
+
+//        Arrays.sort(data, new Comparator<int[]>() {
+//            @Override
+//            public int compare(int[] o1, int[] o2) {
+//                return o1[0]-o2[0];
+//            }
+//        });
+        int[] res = new int[nums.length];
+
+        for (int i = 0; i < data.length; i++) {
+            res[data[i][0]] = data[i][1];
+        }
+        for (int i = 0; i < res.length; i++) {
+            ans.add(res[i]);
+        }
+        return ans;
+    }
+
+
 }
