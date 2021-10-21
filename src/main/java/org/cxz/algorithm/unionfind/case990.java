@@ -17,21 +17,25 @@ public class case990 {
     public boolean equationsPossible(String[] equations) {
         UnionSet u = new UnionSet(26);
         for (int i = 0; i < equations.length; i++) {
-            char a = equations[i].charAt(0);
-            char b = equations[i].charAt(3);
-            int aind = a-'a';
-            int bind = b-'a';
             if(equations[i].charAt(1)=='!'){
                 continue;
             }
-            u.merge(aind,bind);
-        }
-        for (int i = 0; i < equations.length; i++) {
             char a = equations[i].charAt(0);
             char b = equations[i].charAt(3);
             int aind = a-'a';
             int bind = b-'a';
-            if(equations[i].charAt(1)=='!'&&u.get(aind)==u.get(bind)){
+
+            u.merge(aind,bind);
+        }
+        for (int i = 0; i < equations.length; i++) {
+            if(equations[i].charAt(1)=='='){
+                continue;
+            }
+            char a = equations[i].charAt(0);
+            char b = equations[i].charAt(3);
+            int aind = a-'a';
+            int bind = b-'a';
+            if(u.get(aind)==u.get(bind)){
                 return false;
             }
         }
