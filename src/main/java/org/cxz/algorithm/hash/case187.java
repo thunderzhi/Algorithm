@@ -26,7 +26,7 @@ public class case187 {
         }
         List<String> ans = new ArrayList<>();
         for(Map.Entry<String,Integer> t : map.entrySet()){
-            if(t.getValue()==1){
+            if(t.getValue()!=0){
                 continue;
             }
             ans.add(t.getKey());
