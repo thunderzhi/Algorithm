@@ -23,7 +23,7 @@ public class offer35 {
             this.random = null;
         }
     }
-
+    //15.5min
     public Node copyRandomList(Node head){
         if(head==null){
             return head;
