@@ -15,6 +15,7 @@ public class off50 {
     public static void main(String[] args) {
 
     }
+    //11min
 
     public char firstUniqChar(String s) {
         if(s.length()==0){
