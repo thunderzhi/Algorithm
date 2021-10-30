@@ -36,6 +36,7 @@ public class case239 {
                 ans[ind-k]=nums[q.peekFirst()];
             }
         }
+
         return ans;
     }
 
