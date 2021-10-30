@@ -20,10 +20,7 @@ public class case863 {
         getRes(root,target,karr,ans);
         return ans;
     }
-
-
-
-
+    
     //find target in root,return target when u get it.
     public TreeNode getRes(TreeNode root, TreeNode target, int[] k,List<Integer> ans ){
 
