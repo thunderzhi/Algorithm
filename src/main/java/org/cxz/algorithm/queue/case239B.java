@@ -23,7 +23,6 @@ public class case239B {
         for (int i = 0; i < nums.length; i++) {
             //any element in tail smaller than nums[i] will pop
             while(!dq.isEmpty()&&nums[dq.peekLast()]<nums[i]){
-                //
                 dq.pollLast();
             }
             //now nums[i] is less bigger element in the window
@@ -39,7 +38,6 @@ public class case239B {
             //reach the window size,put the element in the head to the array
             ans[ind++]=nums[dq.peek()];
         }
-
         return ans;
     }
 
