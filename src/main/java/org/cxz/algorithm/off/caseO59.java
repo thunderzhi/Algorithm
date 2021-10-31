@@ -16,11 +16,12 @@ public class caseO59 {
     }
     Deque<Integer> q;
     Deque<Integer> mq;
-    public MaxQueue() {
-        q = new LinkedList<>();
-        mq = new LinkedList<>();
-
-    }
+    // fine
+//    public MaxQueue() {
+//        q = new LinkedList<>();
+//        mq = new LinkedList<>();
+//
+//    }
     public int max_value() {
         if(mq.isEmpty()){
             return -1;
