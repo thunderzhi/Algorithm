@@ -27,6 +27,7 @@ public class case862 {
         int pos = -1; int ans = -1;
         for(int i =1;i<sum.length;i++){
             while(!dq.isEmpty()&&(sum[i]-sum[dq.peek()])>=k){
+                //this mean that we find a new pos
                 pos = dq.peekFirst();
                 dq.pollFirst();
             }
@@ -34,7 +35,7 @@ public class case862 {
                 ans = i-pos;
             }
             while(!dq.isEmpty()&&(sum[i]-sum[dq.peekLast()])<0){
-
+                //when we gei new i, we should poll some element to apply
                 dq.pollLast();//find new i
             }
             dq.offer(i);
