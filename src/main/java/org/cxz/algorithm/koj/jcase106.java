@@ -8,6 +8,7 @@ package org.cxz.algorithm.koj;
  * @date 2021/11/1 18:08
  */
 public class jcase106 {
+
     public static void main(String[] args) {
         long res = new jcase106().getNfb(35);
 
