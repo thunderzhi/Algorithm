@@ -30,7 +30,6 @@ public class case155 {
         if (stack.isEmpty()) {
             return;
         }
-
         int pop = (int)stack.pop();
         if (minstack.peek()==pop){
             minstack.pop();
@@ -38,12 +37,10 @@ public class case155 {
     }
 
     public int top() {
-
         return stack.peek();
     }
 
     public int getMin() {
-
         return  minstack.peek();
     }
 }
