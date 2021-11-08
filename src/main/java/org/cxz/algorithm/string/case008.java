@@ -9,7 +9,9 @@ package org.cxz.algorithm.string;
  */
 public class case008 {
     public static void main(String[] args) {
+        String test= null;
 
+        System.out.println("test.length() = " + test.length());
     }
 
     public int myAtoi(String s) {
