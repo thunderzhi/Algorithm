@@ -164,7 +164,7 @@ public class AVL {
     }
 
     public Node prodecessor(Node root){
-        Node p = root;
+        Node p = root.left;
         while(p.right!=NIL){
             p = p.right;
         }
