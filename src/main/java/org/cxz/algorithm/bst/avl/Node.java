@@ -4,7 +4,7 @@ package org.cxz.algorithm.bst.avl;
  * @author cxz
  * @Title:
  * @Package
- * @Description:
+ * @Description: Common AVL Tree Node
  * @date 2021/11/12 16:18
  */
 public class Node {
