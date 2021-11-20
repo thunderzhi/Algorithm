@@ -7,7 +7,7 @@ import java.util.Comparator;
  * @author cxz
  * @Title:
  * @Package
- * @Description:
+ * @Description: 建立索引数组，并且将索引数组的索引，按照原始数组的大小排序
  * @date 2021/10/12 11:41
  */
 public class sth {
