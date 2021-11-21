@@ -23,7 +23,6 @@ public class case78 {
         for (int i = 0,j=1; i < n; i++,j<<=1) {
             map.put(j,i);
         }
-
         for (int i = 0,I = (1<<n);i<I;i++){
             List<Integer> arr = new ArrayList<>();
             int val = i;
