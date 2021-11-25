@@ -6,6 +6,14 @@ import static org.cxz.algorithm.bst.rbt.Node.NIL;
  * @Title:
  * @Package
  * @Description:
+ *  Red black tree
+ *     1 Node color is Red or black.
+ *     2 The leaf node color should be black.
+ *     3 The black node nums in Each path from root to leaf is same.[Contain NIL black node]
+ *     4 If the node color is red,its parent and children have to be black.
+ *     5 The color of NIL node is black
+ *     All operation should obey these rules.
+ *
  * @date 2021/11/18 13:44
  */
 public class RBT {
@@ -19,17 +27,7 @@ public class RBT {
     public Node getNewNode(int key){
         return new Node(key);
     }
-
-    /*
-    Red black tree
-    1 Node color is Red or black.
-    2 The leaf node color should be black.
-    3 The black node nums in Each path from root to leaf is same.[Contain NIL black node]
-    4 If the node color is red,its parent and children have to be black.
-    5 The color of NIL node is black
-    All operation should obey these rules.
-    */
-
+ 
     //insert a node to root ,return the root node of the tree
     public Node insert(Node root, int key){
         // insert op ,return the root after insert a new node and some adjust
@@ -59,11 +57,8 @@ public class RBT {
         //return root;
     }
 
-    // if the node have a child node color is red ,return true
-    public boolean has_redchild(Node root){
-        return root.left.color==NodeColorEnum.RED||root.right.color==NodeColorEnum.RED;
-    }
 
+    //maintain RB Rule
     public Node insert_maintain(Node root){
         int flag =0;
         /*
@@ -126,16 +121,26 @@ public class RBT {
         return root;
     }
 
+    //region common method
+    //left_rotate
     public Node left_rotate(Node root){
         Node newroot = root.right;
         root.right = newroot.left;
         newroot.left = root;
         return root;
     }
+
+    //right_rotate
     public Node right_rotate(Node root){
         Node newroot = root.left;
         root.left = newroot.right;
         newroot.right = root;
         return newroot;
     }
+
+    // if the node have a child node color is red ,return true
+    public boolean has_redchild(Node root){
+        return root.left.color==NodeColorEnum.RED||root.right.color==NodeColorEnum.RED;
+    }
+    //endregion
 }
