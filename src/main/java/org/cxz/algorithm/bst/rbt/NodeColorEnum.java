@@ -11,4 +11,13 @@ public enum NodeColorEnum {
     RED,
     BLACK,
     DOUBLE_BLACK;
+
+    public static NodeColorEnum getEnum(int val){
+        for (NodeColorEnum c: NodeColorEnum.values()){
+            if(c.ordinal()==val){
+                return c;
+            }
+        }
+        return null;
+    }
 }

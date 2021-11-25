@@ -27,7 +27,7 @@ public class RBT {
     public Node getNewNode(int key){
         return new Node(key);
     }
- 
+
     //insert a node to root ,return the root node of the tree
     public Node insert(Node root, int key){
         // insert op ,return the root after insert a new node and some adjust
@@ -121,6 +121,125 @@ public class RBT {
         return root;
     }
 
+    //return root after del the node val equals to key
+    public Node erase(Node root,int key){
+        root = _erase(root,key);
+        root.color = NodeColorEnum.BLACK;
+        return root;
+    }
+
+
+
+    // real erase operation
+    public Node _erase(Node root,int key){
+        if(root==NIL){
+            return root;
+        }
+        if(root.key>key){
+            //go left erase
+            root.left = _erase(root.left,key);
+        }
+        else if(root.key <key){
+            //go right erase
+            root.right = _erase(root.right,key);
+        }
+        else{
+            // root val === key,ready erase
+            if (root.right==NIL||root.left==NIL){
+                // degree is 0 or 1
+                Node t = root.right==NIL?root.left:root.right;
+                // miss color
+                t.color =NodeColorEnum.getEnum(t.color.ordinal()+root.color.ordinal());
+                return t;
+            }
+            else{
+                // degree is 2
+                Node tmp = predecessor(root);
+                root.key = tmp.key;
+                root.left =_erase(root.left,tmp.key);
+            }
+        }
+
+        //erase maintain
+        return eraseMaintain(root);
+    }
+
+    //
+    public Node eraseMaintain(Node root){
+        if(root.left.color!= NodeColorEnum.DOUBLE_BLACK&&
+                root.right.color!= NodeColorEnum.DOUBLE_BLACK){
+            // both child not double black
+            return root;
+        }
+        // at least one child is dblack
+        int flag= 0;
+        if(has_redchild(root)){
+            root.color = NodeColorEnum.RED;
+            // it means dblack node has a red brother
+            if (root.left.color==NodeColorEnum.RED){
+                //dblack node is right ,red brother on left,right_rotate
+                root = right_rotate(root);
+                flag =1;
+            }
+            else{
+                //dblack node is left ,red brother on right ,need leftrotate
+                root = left_rotate(root);
+                flag =2;
+            }
+            root.color = NodeColorEnum.BLACK;
+            if(flag==1){
+                root.right = eraseMaintain(root.right);
+            }
+            else{
+                root.left = eraseMaintain(root.left);
+            }
+            return root;
+        }
+
+        // dblack's brother is black
+
+        if((root.left.color==NodeColorEnum.DOUBLE_BLACK&&!has_redchild(root.right))||
+                (root.right.color==NodeColorEnum.DOUBLE_BLACK&&!has_redchild(root.left)))
+        {
+            // brother is common black ,and no any red child
+            root.right.color = NodeColorEnum.getEnum(root.right.color.ordinal()+1);
+            root.left.color = NodeColorEnum.getEnum(root.left.color.ordinal()+1);
+            root.color = NodeColorEnum.getEnum(root.color.ordinal()+1);
+            return root;
+        }
+
+        // brother is common black and have at least one red child
+        if (root.right.color==NodeColorEnum.BLACK){
+            //dblack is left
+            root.left.color =NodeColorEnum.BLACK;//dblack color black
+            if(root.right.right.color!=NodeColorEnum.RED){
+                root.right.color = NodeColorEnum.RED;
+                //RL
+                root.right =right_rotate(root.right);
+                root.right.color = NodeColorEnum.BLACK;
+            }
+            //RR
+            root.right.color = root.color;//new root should color old root color
+            root = left_rotate(root);
+        }
+        else{
+            //dblack is right root.left is black
+            root.right.color =NodeColorEnum.BLACK;//dblack color black
+            if(root.left.left.color!=NodeColorEnum.RED){
+                root.left.color = NodeColorEnum.RED;
+                //LR
+                root.left =left_rotate(root.left);
+                root.left.color = NodeColorEnum.BLACK;
+            }
+            //LL
+            root.left.color = root.color;//new root should color old root color
+            root = right_rotate(root);
+        }
+        root.right.color = NodeColorEnum.BLACK;
+        root.left.color = NodeColorEnum.BLACK;
+        return root;
+    }
+
     //region common method
     //left_rotate
     public Node left_rotate(Node root){
@@ -142,5 +261,16 @@ public class RBT {
     public boolean has_redchild(Node root){
         return root.left.color==NodeColorEnum.RED||root.right.color==NodeColorEnum.RED;
     }
+
+    //find node predecessor
+    public Node predecessor(Node root){
+        Node p = root.left;
+        while(p.right!=NIL){
+            p = p.right;
+        }
+        return p;
+    }
+
+
     //endregion
 }
