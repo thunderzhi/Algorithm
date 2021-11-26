@@ -1,5 +1,7 @@
 package org.cxz.algorithm.bst.rbt;
 
+
+
 import static org.cxz.algorithm.bst.rbt.Node.NIL;
 /**
  * @author cxz
@@ -22,6 +24,18 @@ public class RBT {
         NodeColorEnum black = NodeColorEnum.BLACK;
 
         System.out.println("black = " + NodeColorEnum.BLACK.ordinal() );
+         Node root =  Node.NIL;
+        int[] arr = {5,9,8,3,2,4,1,7};
+        RBT rbt = new RBT();
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println("=====tree print======");
+            System.out.println("insert num = " + arr[i]);
+            root = rbt.insert(root,arr[i]);
+            output(root);
+            System.out.println("=====tree print done======");
+        }
+
+        System.out.println("finish");
     }
     // create a new node
     public Node getNewNode(int key){
@@ -246,7 +260,7 @@ public class RBT {
         Node newroot = root.right;
         root.right = newroot.left;
         newroot.left = root;
-        return root;
+        return newroot;
     }
 
     //right_rotate
@@ -271,6 +285,29 @@ public class RBT {
         return p;
     }
 
-
     //endregion
+
+    public static void output(Node root){
+        if(root ==  NIL){
+            return;
+        }
+        print(root);
+        output(root.left);
+        output(root.right);
+        return;
+    }
+
+    public static void print(Node root){
+        StringBuilder sb = new StringBuilder();
+        sb.append("(");
+        sb.append(root.key!=Integer.MIN_VALUE?root.key:"NIL");
+        sb.append("[");
+        sb.append(root.color);
+        sb.append("] |");
+        sb.append(root.left.key!=Integer.MIN_VALUE?root.left.key:"NIL");
+        sb.append(" , ");
+        sb.append(root.right.key!=Integer.MIN_VALUE?root.right.key:"NIL");
+        sb.append(")");
+        System.out.println(sb.toString());
+    }
 }
