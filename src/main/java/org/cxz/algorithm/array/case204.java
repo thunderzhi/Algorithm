@@ -18,7 +18,8 @@ public class case204 {
             if (prime[i]==1){
                 continue;
             }
-            for (int j = 2*i; j < n; j+=i) {
+            for (int j = i*i; j < n; j+=i) {
+                System.out.println("i = " + i+" j = " + j);
                 prime[j]=1;
             }
         }
