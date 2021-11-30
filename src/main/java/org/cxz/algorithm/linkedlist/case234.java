@@ -54,4 +54,21 @@ public class case234 {
         tail.next = head;
         return p;
     }
+
+    public boolean is(ListNode head){
+        if (head==null){
+            return true;
+        }
+        int a = 0;
+        int b = 0;
+        ListNode p = head;
+        int cnt =1;
+        while(p!=null){
+            a = a*10 + p.val;
+            b = p.val*cnt+b;
+            cnt*=10;
+            p = p.next;
+        }
+        return a==b;
+    }
 }

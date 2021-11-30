@@ -16,7 +16,7 @@ public class case528 {
     }
     public int[] presum;
     public int n;
-    public Solution(int[] w) {
+    public void Solutiontest(int[] w) {
         presum = new int[w.length];
         presum[0]=w[0];
         for (int i = 1; i < w.length ; i++) {
