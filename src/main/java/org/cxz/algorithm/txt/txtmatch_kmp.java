@@ -1,5 +1,7 @@
 package org.cxz.algorithm.txt;
 
+import java.text.MessageFormat;
+
 /**
  * @author cxz
  * @Title:
@@ -27,11 +29,15 @@ public class txtmatch_kmp {
             System.out.println("===================");
             System.out.println("txt i = " + i);
             while(j!=-1&&txt.charAt(i)!=pattern.charAt(j+1)){
-                System.out.println(String.format("move j from {0} to {1}",j,next[j]));
+
+                System.out.println(MessageFormat.format("move j from {0} to {1}",j,next[j]));
                 j= next[j];
             }
             if (txt.charAt(i)==pattern.charAt(j+1)){
+                System.out.println("txt ind= "+i+" equal to pattern (j+1) = " +(j+1)+" == "+txt.charAt(i)+" j will plus 1");
                 j+=1;
+                System.out.println( " j after plus 1 == "+j);
+
             }
             if (pattern.length()==j+1){
                 return i-j;
@@ -61,7 +67,7 @@ public class txtmatch_kmp {
         sb2.append("Value: ");
         for (int i = 0; i < next.length; i++) {
             sb.append("   "+i+"  ");
-            sb2.append(" ["+next[i]+"] ");
+            sb2.append("  ["+next[i]+"] " );
         }
         System.out.println(sb.toString());
         System.out.println(sb2.toString());
