@@ -29,15 +29,19 @@ public class txtmatch_kmp {
             System.out.println("===================");
             System.out.println("txt i = " + i);
             while(j!=-1&&txt.charAt(i)!=pattern.charAt(j+1)){
+                System.out.println("j = " + j);
+                String s = MessageFormat.format(" move j from {0} to {1} ",j,next[j]);
 
-                System.out.println(MessageFormat.format("move j from {0} to {1}",j,next[j]));
+                String str = next[j]==-1?" [char at -1] ":pattern.charAt(next[j])+"";
+                String s2= MessageFormat.format(" char j from {0} to {1} ",pattern.charAt(j),str);
+                System.out.println( s+ s2);
+                //System.out.println(MessageFormat.format("move j from {0} to {1} --{2} to {3}",j,next[j],pattern.charAt(j),(j!=-1?pattern.charAt(next[j]):" j is out of bound ")));
                 j= next[j];
             }
             if (txt.charAt(i)==pattern.charAt(j+1)){
                 System.out.println("txt ind= "+i+" equal to pattern (j+1) = " +(j+1)+" == "+txt.charAt(i)+" j will plus 1");
                 j+=1;
                 System.out.println( " j after plus 1 == "+j);
-
             }
             if (pattern.length()==j+1){
                 return i-j;
