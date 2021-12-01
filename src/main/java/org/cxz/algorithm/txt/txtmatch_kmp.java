@@ -11,8 +11,11 @@ import java.text.MessageFormat;
  */
 public class txtmatch_kmp {
     public static void main(String[] args) {
-        String txt = "aecaeaecaed";
+        String txt = "aecaeaecaedc";
+        System.out.println("txt length = " + txt.length()    );
         String pattern = "aecaed";
+        System.out.println("pattern length = " + pattern.length()    );
+
         int res = new txtmatch_kmp().kmp(txt, pattern);
 
         System.out.println("res = " + res);
@@ -51,31 +54,45 @@ public class txtmatch_kmp {
     }
 
     public void GetNext(String pattern, int[] next) {
+        //next[0] means that the first element not equal, only jump to -1
         next[0]=-1;
+        //now for[] start at 1
         for (int i = 1,j=-1; i < pattern.length(); i++) {
-
+            //
             while(j!=-1&&pattern.charAt(i)!=pattern.charAt(j+1)){
                 //move j to previous
 
+                String s = MessageFormat.format(" pat move j from {0} to {1} ",j,next[j]);
+
+                String str = next[j]==-1?" [char at -1] ":pattern.charAt(next[j])+"";
+                String s2= MessageFormat.format(" char j from {0} to {1} ",pattern.charAt(j),str);
+                System.out.println( s+ s2);
                 j = next[j];
             }
             if (pattern.charAt(i)==pattern.charAt(j+1)){
+                System.out.println("pat ind= "+i+" equal to pat (j+1) = " +(j+1)+" == "+pattern.charAt(i)+" j will plus 1");
                 // match go next
                 j+=1;
+                System.out.println("pat j after plus 1 j=="+j);
+
             }
+
             next[i] =j;
+            System.out.println("next["+i+"] = " + j);
         }
+
         StringBuilder sb = new StringBuilder();
         StringBuilder sb2 = new StringBuilder();
         sb.append("Index: ");
         sb2.append("Value: ");
         for (int i = 0; i < next.length; i++) {
-            sb.append("   "+i+"  ");
+            sb.append("   "+i+pattern.charAt(i)+"  ");
             sb2.append("  ["+next[i]+"] " );
         }
         System.out.println(sb.toString());
         System.out.println(sb2.toString());
 
+        System.out.println("*****************************************************" );
         
     }
 
