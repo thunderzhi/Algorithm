@@ -21,13 +21,49 @@ public class txtmatch_kmp {
         System.out.println("res = " + res);
     }
 
+    //without comment
+    public void getNext(String pattern,int[] next){
+        next[0]=-1;
+        for (int i = 1,j=-1; i < pattern.length(); i++) {
+            while(j!=-1&&pattern.charAt(i)!=pattern.charAt(j+1)){//miss j+1
+                j = next[j];
+            }
+            if (pattern.charAt(i)==pattern.charAt(j+1)){//miss j+1
+                j+=1;
+            }
+            next[i] =j;
+        }
+        return ;
+    }
 
-
+    //without comment
     int kmp(String txt,String pattern){
+        int[] next = new int[pattern.length()];
+        getNext(pattern,next);
+        int j =-1;
+        for (int i = 0; i < txt.length(); i++) {
+
+            while (j!=-1&&txt.charAt(i)!=pattern.charAt(j+1)){
+                j = next[j];
+            }
+            if (txt.charAt(i)==pattern.charAt(j+1)){
+                j+=1;
+            }
+            if(pattern.length() == j+1){
+                return i-j;
+            }
+        }
+        return -1;
+    }
+
+
+
+
+    int kmp2(String txt,String pattern){
         int n = pattern.length();
        
         int[] next = new int[n];
-        GetNext(pattern,next);
+        GetNext2(pattern,next);
         for (int i = 0,j =-1; i < txt.length() ; i++) {
             System.out.println("===================");
             System.out.println("txt i = " + i);
@@ -53,7 +89,7 @@ public class txtmatch_kmp {
         return -1;
     }
 
-    public void GetNext(String pattern, int[] next) {
+    public void GetNext2(String pattern, int[] next) {
         //next[0] means that the first element not equal, only jump to -1
         next[0]=-1;
         //now for[] start at 1
