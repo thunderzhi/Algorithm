@@ -44,6 +44,9 @@ public class txtmatch_sunday {
             if (flag==1){
                 return i;
             }
+            if(n<=m+i){
+                break;
+            }
         }
         return -1;
     }
