@@ -16,7 +16,8 @@ public class case003 {
        int l = new case003().lengthOfLongestSubstring("au");
         System.out.println("l = " + l);
     }
-
+    //slide window
+    // this window is autosize window,
     public int lengthOfLongestSubstring(String s) {
         if(s.equals("")){
             return 0;
@@ -27,18 +28,19 @@ public class case003 {
         }
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
         int ans =0;
-        int k = 0;
-        int left = 0;
-        while(k<n){
-            if(map.containsKey(s.charAt(k))){
-                left = Math.max(left,map.get(s.charAt(k)) + 1);
+        int right = 0;// window right index
+        int left = 0;// window left index
+        while(right<n){
+            if(map.containsKey(s.charAt(right))){
+                left = Math.max(left,map.get(s.charAt(right)) + 1);// if not the first time meet the char ,move left pos
             }
-            map.put(s.charAt(k),k);
-            ans = Math.max(ans,k-left+1);
-            k++;
+            map.put(s.charAt(right),right);//record the latest value of index of char
+            ans = Math.max(ans,right-left+1);
+            right++;
         }
 
         return ans;
     }
+
     
 }
