@@ -6,7 +6,7 @@ import java.util.Scanner;
  * @author cxz
  * @Title:
  * @Package
- * @Description:
+ * @Description: use TrieNode array create a trie, each next[i] represent a char
  * @date 2021/12/9 22:07
  */
 public class Trie_01 {

@@ -6,7 +6,7 @@ import java.util.Scanner;
  * @author cxz
  * @Title:
  * @Package
- * @Description:
+ * @Description:  use trie dfs output each word ,is sort
  * @date 2021/12/9 22:07
  */
 public class Trie_02 {
