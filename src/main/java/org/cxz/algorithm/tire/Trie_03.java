@@ -6,13 +6,13 @@ import java.util.Scanner;
  * @author cxz
  * @Title:
  * @Package
- * @Description:
+ * @Description:  use array implement a trie
  * @date 2021/12/9 22:07
  */
 public class Trie_03 {
     private final int BASE = 26;
     public class TrieNode{
-        int flag;// is word
+        int flag;//1 is word
         int[] next=new int[BASE];
         void clear(){
             flag = 0;
@@ -25,66 +25,68 @@ public class Trie_03 {
     public int cnt;
 
     private int root;
+    public void init(){
+        for (int i = 0; i < trie.length ; i++) {
+            trie[i] = new TrieNode();
+        }
+    }
     void clearTrie(){
         cnt =2;
         root =1;
+        init();
         trie[root].clear();
         return;
     }
     public Trie_03(){
 
     }
+    public int getNewTrienode(){
+        trie[cnt].clear();
+        return cnt++;
+    }
 
     public boolean insert(String word){
-        TrieNode p = root;
+        int p = root;
         for (int i = 0; i < word.length(); i++) {
             int ind = word.charAt(i) -'a';
-            if(p.next[ind]==null){
-                p.next[ind] = new TrieNode();
+            if(trie[p].next[ind]==0){
+                trie[p].next[ind] = getNewTrienode();
             }
-            p = p.next[ind];
+            p = trie[p].next[ind];
         }
-        if(p.flag){
+        if(trie[p].flag==1){
             return false;
         }
-        p.flag = true;
+        trie[p].flag = 1;
         return true;
     }
     public boolean search(String word){
-        TrieNode p = root;
+        int p = root;
         for (int i = 0; i < word.length(); i++) {
             int ind = word.charAt(i) -'a';
-            p = p.next[ind];
-            if(p==null){
+            p = trie[p].next[ind];
+            if(p==0){
                 return false;
             }
         }
-        return p.flag;
+        return trie[p].flag==1;
     }
-    public void output(){
-        _output(root,"");
-    }
-    public void _output(TrieNode root,String s ){
-        if(root==null){
-            return;
-        }
-        if(root.flag){
-            System.out.println("find: " + s);
-        }
-        for (int i = 0; i < BASE; i++) {
 
-            _output(root.next[i],s+(char)(i+'a'));
-        }
-        return;
-    }
     public static void main(String[] args) {
         Trie_03 t = new Trie_03();
+        t.clearTrie();
         Scanner scan = new Scanner(System.in);
         String[] arr = {"kacek","hello","world","ssioal","liilsl","wzwxpll"};
         for (int i = 0; i < 6; i++) {
             //String s = scan.nextLine();
             t.insert(arr[i]);
         }
-        t.output();
+        while(true){
+            String s = scan.nextLine();
+            String res ="search word = "+s+", res = "+t.search(s);
+            System.out.println("res = " + res);
+
+        }
+        //t.output();
     }
 }
