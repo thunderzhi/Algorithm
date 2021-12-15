@@ -9,6 +9,7 @@ package org.cxz.algorithm.tire;
  */
 public class case208 {
 
+
     public class Trie{
         public class TrieNode{
             public boolean isword;//
@@ -33,10 +34,10 @@ public class case208 {
             int n = word.length();
             for (int i = 0; i < n; i++) {
                 int ind = word.charAt(i)-'a';
-                if (p.next[i]==null){
-                    p.next[i] = new TrieNode();
+                if (p.next[ind]==null){
+                    p.next[ind] = new TrieNode();
                 }
-                p = p.next[i];
+                p = p.next[ind];
             }
             p.isword = true;
             return;
@@ -47,10 +48,10 @@ public class case208 {
             int n = word.length();
             for (int i = 0; i < n; i++) {
                 int ind = word.charAt(i)-'a';
-                if (p.next[i]==null){
+                if (p.next[ind]==null){
                     return false;
                 }
-                p = p.next[i];
+                p = p.next[ind];
             }
             return p.isword;
         }
@@ -60,10 +61,10 @@ public class case208 {
             int n = prefix.length();
             for (int i = 0; i < n; i++) {
                 int ind = prefix.charAt(i)-'a';
-                if (p.next[i]==null){
+                if (p.next[ind]==null){
                     return false;
                 }
-                p = p.next[i];
+                p = p.next[ind];
             }
             return true;
         }
