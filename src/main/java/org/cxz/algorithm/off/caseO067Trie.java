@@ -26,10 +26,10 @@ public class caseO067Trie {
     public void insert(int num){
         TrieNode p = root;
         for (int i = 30; i >=0 ; i--) {
-            System.out.println("num = " + Integer.toBinaryString(num));
-            System.out.println(" num>> " + i+" = "+Integer.toBinaryString(num>>>i));
+           // System.out.println("num = " + Integer.toBinaryString(num));
+            //System.out.println(" num>> " + i+" = "+Integer.toBinaryString(num>>>i));
             int ind =num>>i&1;
-            System.out.println(" num>> " + i+"|1 = "+Integer.toBinaryString(num>>>i&1));
+            //System.out.println(" num>> " + i+"|1 = "+Integer.toBinaryString(num>>>i&1));
 
             if(p.next[ind]==null){
                 p.next[ind] = new TrieNode();
@@ -55,9 +55,9 @@ public class caseO067Trie {
     }
 
     public static void main(String[] args) {
-        //int[] arr = {14,70,53,83,49,91,36,80,92,51,66,70};
+        int[] arr = {14,70,53,83,49,91,36,80,92,51,66,70};
         //int[] arr = {3,10,5,25,2,8};
-        int[] arr = {4,2};
+       // int[] arr = {4,2};
         int maximumXOR = new caseO067Trie().findMaximumXOR(arr);
         System.out.println("maximumXOR = " + maximumXOR);
     }
