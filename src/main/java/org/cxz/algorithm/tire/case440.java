@@ -10,7 +10,7 @@ package org.cxz.algorithm.tire;
 public class case440 {
 
     public static void main(String[] args) {
-        int n =300;//1000000000
+        int n =3000;//1000000000
         //int n =1000000000;
         //66666666
         int k = 297;//96  //159999997
@@ -39,13 +39,20 @@ public class case440 {
         }
         return cur;
     }
-
+    //cur as root ,calc all nums below cur[include cur]
     private int getcount(int n, int cur) {
         int next = cur+1,cnt =0;
+        if(cur>=90){
+        }
+        System.out.println(" n = " + n+" cur = " + cur+" next = " + next);
+
         while (cur<=n){
             cnt += Math.min(next-cur,n-cur+1);
             cur*=10;
             next*=10;
+            if(cur>=90){
+            }
+            System.out.println("cur*10 = " + cur+" next*10 = " + next+" cnt = "+cnt);
 
         }
         return cnt;
