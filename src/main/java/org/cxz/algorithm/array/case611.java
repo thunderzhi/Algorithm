@@ -44,8 +44,9 @@ public class case611 {
         int r = right;
         int mid = 0;
         while(r-l>3){
-            // l+(r-l)>>1 cannot avoid locate the same mid
-            mid = (r+l+1)>>1;
+            // l+(r-l)>>1 cannot avoid locate the same mid    bug casue by +  calc before >>
+            mid = l+(r-l)/2;
+            //mid = (r+l+1)>>1;
             if(arr[mid]>=tar){
                 r = mid;
             }
