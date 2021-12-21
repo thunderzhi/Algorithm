@@ -29,7 +29,6 @@ public class case611 {
                 int left = j+1;
                 int right = n-1;
                 int first = find01(nums,left,right,x);
-
                 ans += first-1-j;
             }
         }
