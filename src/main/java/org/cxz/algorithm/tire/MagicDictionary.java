@@ -6,7 +6,7 @@ import org.w3c.dom.Node;
  * @author cxz
  * @Title:
  * @Package
- * @Description:
+ * @Description: case 676
  * @date 2021/12/21 15:14
  */
 public class MagicDictionary {
