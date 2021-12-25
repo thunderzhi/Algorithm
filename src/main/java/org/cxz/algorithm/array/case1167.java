@@ -13,5 +13,5 @@ public class case1167 {
 
     }
 
-    
+
 }
