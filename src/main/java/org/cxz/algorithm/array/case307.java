@@ -50,7 +50,10 @@ public class case307 {
 
         public int sumRange(int left, int right) {
             int a = query(left);
+            System.out.println("a = " + a);
             int b = query(right+1);//miss +1
+            System.out.println("b = " + b);
+
             return b-a;
         }
     }
