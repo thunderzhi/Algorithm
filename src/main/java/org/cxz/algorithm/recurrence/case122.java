@@ -44,7 +44,7 @@ public class case122 {
             dp[ind][0]= Math.max(dp[preind][0],dp[preind][1]+prices[i]);
             dp[ind][1]= Math.max(dp[preind][1],dp[preind][0]-prices[i]);
         }
-        
+
         return dp[(n-1)%2][0];
     }
 
