@@ -56,12 +56,12 @@ public class case152 {
         if(n==0){
             return 0;
         }
-        int ans = 0;
+        int ans = Integer.MIN_VALUE;// miss ans should be min
         int max = 1;
         int min = 1;
-        int pre = nums[0];
+
         int cur = 0;
-        for (int i = 1; i <= n; i++) {
+        for (int i = 0; i < n; i++) {// miss i start at 0
             cur = nums[i];
             if(cur<0){
                 int tmp = min;
