@@ -4,7 +4,7 @@ package org.cxz.algorithm.array;
  * @author cxz
  * @Title:
  * @Package
- * @Description: todo not finish
+ * @Description: todo not finish   not pass
  * @date 2021/12/22 10:33
  */
 public class case255 {
