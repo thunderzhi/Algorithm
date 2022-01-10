@@ -23,16 +23,23 @@ public class casePACK01 {
         * */
         int[] w = new int[n+5];//weight
         int[] v = new int[n+5];//value
-        int[][] dp = new int[n+5][W+5];
+//        int[][] dp = new int[n+5][W+5];
+        int[][] dp = new int[2][W+5];
         for (int i = 0; i < nums.length; i++) {
             w[i]=nums[i][0];
             v[i]=nums[i][1];
         }
         for (int i = 1; i <=n ; i++) {
+            int ind = i%2;
+            int preind = ind==1?0:1;
             for (int j = 0; j <= W; j++) {
-                dp[i][j] = dp[i-1][j];
-                if(j>=w[i]){
-                    dp[i][j] =Math.max(dp[i-1][j-w[i]] +v[i],dp[i][j]);
+//                dp[i][j] = dp[i-1][j];
+//                if(j>=w[i]){
+//                    dp[i][j] =Math.max(dp[i-1][j-w[i]] +v[i],dp[i][j]);
+//                }
+                dp[ind][j] = dp[preind][j];
+                if(j>=w[ind]){
+                    dp[ind][j] =Math.max(dp[preind][j-w[i]] +v[i],dp[ind][j]);
                 }
             }
         }
