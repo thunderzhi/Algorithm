@@ -11,27 +11,80 @@ public class case213 {
     public static void main(String[] args) {
 
     }
-
+    //version 1
     public int rob(int[] nums) {
         //n
         /*
         dp[n][0]   dont steal the nth house MAX
         dp[n][1]   steal the nth house MAX
-        dp[n][0]  MAX
-        1 steal n-1 house or not
-        dp[n][0] =max(dp[n-1][0],dp[n-1][1] )  if n is the last
-
-        dp[n][1]  MAX
-        1 not steal n-1
+        if steal 0 ,u cant steal n-1 ===>dp[n-1][0] is we need
+        dp[n][0] =max(dp[n-1][0],dp[n-1][1] )
         dp[n][1] = dp[n-1][0]+nums[i]
-        2 if n is the last ,cant steal the first 0 either
-        dp[n][1] = dp[n-1][0]
+        if dont steal 0 ,dp[0][0]=0,dp[0][1]=0
+        dp[n-1][1] is we want
+        return  max of( dp[n-1][1]  ,dp[n-1][0])
+        */
+        int n = nums.length;
+        if(n==1){
+            return nums[0];  //miss
+        }
+        int[][] dp = new int[n + 1][2];
+        dp[0][0] = 0;
+        dp[0][1] = nums[0];
+        int ans1 = 0;
+        for (int i = 1; i < n; i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1]);
+            dp[i][1] = dp[i - 1][0] + nums[i];
+        }
+        ans1 = dp[n - 1][0];
+        int ans2 = 0;
+        dp[0][1] = 0;
+        for (int i = 1; i < n; i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1]);
+            dp[i][1] = dp[i - 1][0] + nums[i];
+        }
+        ans2 = dp[n - 1][1];
+        return Math.max(ans1, ans2);
+    }
 
-
-
-
-
-        * */
-        return 1;
+    //version 2 two array
+    public int rob2(int[] nums) {
+        //n
+        /*
+        dp[n][0]   dont steal the nth house MAX
+        dp[n][1]   steal the nth house MAX
+        if steal 0 ,u cant steal n-1 ===>dp[n-1][0] is we need
+        dp[n][0] =max(dp[n-1][0],dp[n-1][1] )
+        dp[n][1] = dp[n-1][0]+nums[i]
+        if dont steal 0 ,dp[0][0]=0,dp[0][1]=0
+        dp[n-1][1] is we want
+        return  max of( dp[n-1][1]  ,dp[n-1][0])
+        */
+        int n = nums.length;
+        if(n==1){
+            return nums[0];  //miss
+        }
+        int[][] dp = new int[2][2];
+        dp[0][0] = 0;
+        dp[0][1] = nums[0];
+        int ans1 = 0;
+        for (int i = 1; i < n; i++) {
+            int ind = i%2;
+            int preind = ind==1?0:1;
+            dp[ind][0] = Math.max(dp[preind][0], dp[preind][1]);
+            dp[ind][1] = dp[preind][0] + nums[i];
+        }
+        ans1 = dp[(n - 1)%2][0];
+        int ans2 = 0;
+        dp[0][0] = 0;
+        dp[0][1] = 0;
+        for (int i = 1; i < n; i++) {
+            int ind = i%2;
+            int preind = ind==1?0:1;
+            dp[ind][0] = Math.max(dp[preind][0], dp[preind][1]);
+            dp[ind][1] = dp[preind][0] + nums[i];
+        }
+        ans2 = dp[(n - 1)%2][1];
+        return Math.max(ans1, ans2);
     }
 }
