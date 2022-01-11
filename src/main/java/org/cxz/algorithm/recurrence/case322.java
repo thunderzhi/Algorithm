@@ -38,4 +38,23 @@ public class case322 {
         }
         return  dp[amount];
     }
+
+    // ver 2 dp recommend
+    public int coinChange2(int[] coins, int amount) {
+        //dp[i][j] = min(dp[i-1][j],dp[i][j-x]+1)
+        int n = coins.length;
+        int[] dp = new int[amount+1];//miss
+        Arrays.fill(dp,-1);
+        dp[0] = 0;
+        for (int i = 0; i <n ; i++) {
+            int x = coins[i];
+            for (int j = x; j <=amount; j++) {
+                if(dp[j-x]==-1){continue;}//cant reach
+                if(dp[j]==-1||dp[j]>dp[j-x]+1){
+                    dp[j]=dp[j-x]+1;
+                }
+            }
+        }
+        return dp[amount];
+    }
 }
