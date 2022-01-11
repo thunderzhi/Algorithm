@@ -15,7 +15,8 @@ public class case494 {
        // int[] arr ={2,107,109,113,127,131,137,3,2,3,5,7,11,13,17,19,23,29,47,53};
        // 1000
         int t = 3;
-        int targetSumWays = new case494().findTargetSumWays2(arr, t);
+        int targetSumWays = new case494()
+                .findTargetSumWays4(arr, t);
         System.out.println("targetSumWays = " + targetSumWays);
     }
 
@@ -78,7 +79,7 @@ public class case494 {
        // int[][] dp =
  
     }
-    //ver 2 improve
+    //ver 2 cap improve
     public int findTargetSumWays2(int[] nums, int target) {
         int n = nums.length;
         int sum =0;
@@ -107,4 +108,64 @@ public class case494 {
         return dp[n%2][target+I];//miss 
     }
 
+    //ver 3
+    public int findTargetSumWays3(int[] nums, int target){
+
+        /*
+        (sum -neg) -neg = target
+        sum = target+2*neg
+        neg =(sum-target)/2
+        dp[i][j] 0~~i sum==j
+        1 include i
+        dp[i][j] =dp[i-1][j-nums[i]]
+        2 exclude i
+        dp[i][j] = dp[i-1][j]
+        dp[0][0] = 1
+        dp[n][neg] is res
+        * */
+        int n = nums.length;
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum+=nums[i];
+        }
+        int diff = sum-target;
+        if(diff<0||diff%2!=0){
+            return 0;
+        }
+        int neg = diff/2;
+        int[][] dp = new int[2][neg+1];
+        dp[0][0] =1;
+        for (int i = 1; i <=n ; i++) {
+            int ind = i%2;
+            int preind = ind==1?0:1;
+            for (int j = 0; j <=neg  ; j++) {
+                dp[ind][j] = dp[preind][j];
+                if (j-nums[i-1]>=0) {
+                    dp[ind][j] += dp[preind][j-nums[i-1]];
+                }
+            }
+        }
+        return dp[n%2][neg];
+    }
+    //ver 4 improve this one
+    public int findTargetSumWays4(int[] nums, int target){
+        int n = nums.length;
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum+=nums[i];
+        }
+        int diff = sum-target;
+        if(diff<0||diff%2!=0){
+            return 0;
+        }
+        int neg = diff/2;
+        int[] dp = new int[neg+1];
+        dp[0] =1;
+        for (int i = 1; i <=n ; i++) {
+            for (int j = neg; j >=nums[i-1]  ; j--) {
+                dp[j] = dp[j]+dp[j-nums[i-1]];
+            }
+        }
+        return dp[neg];
+    }
 }
