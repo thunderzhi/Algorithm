@@ -63,4 +63,28 @@ public class case474 {
 
         * */
     }
+
+    //ver 1 2d array
+    public int findMaxForm2(String[] strs, int m, int n){
+        int[][] dp = new int[m+1][n+1];
+        for (int i = 1; i < strs.length; i++) {//miss =
+            int cnt0 =0;
+            int cnt1 =0;
+            String str = strs[i - 1];
+            for (int p = 0; p < str.length(); p++) {
+                if(str.charAt(p)=='0'){
+                    cnt0++;
+                }
+                else{
+                    cnt1++;
+                }
+            }
+            for (int j = m; j >=cnt0; j--) {
+                for (int k = n; k >=cnt1 ; k--) {
+                    dp[j][k] =Math.max(dp[j][k],dp[j-cnt0][k-cnt1]+1);
+                }
+            }
+        }
+        return dp[m][n];
+    }
 }
