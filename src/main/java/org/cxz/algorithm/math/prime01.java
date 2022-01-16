@@ -39,6 +39,7 @@ public class prime01 {
                 mu[i*prime[j]]=-mu[i];
             }
         }
+
         return;
     }
 
