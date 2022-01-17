@@ -12,9 +12,7 @@ public class case878 {
     public long mod =(long)(1e9+7);
     public int nthMagicalNumber(int n, int a, int b) {
         long l =(long) Math.min(a,b);
-
         long r =(long)(n*l);
-
         long mid = 0;
         while(l<r){
             mid =l+(r-l)/2;
@@ -24,10 +22,8 @@ public class case878 {
             else{
                 l =mid+1;
             }
-
         }
         return (int)(l%mod);
-
     }
 
     public long gcd(long a ,long b){
