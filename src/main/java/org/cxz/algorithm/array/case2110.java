@@ -62,4 +62,23 @@ public class case2110 {
         }
         return dp[n];
     }
+
+
+    //ver 2 cap O(n) O1
+    public long getDescentPeriods2(int[] prices) {
+        long fi = 0;
+        long ans = 0;
+        int n  = prices.length;
+        for(int i=0,pre =0;i<n;i++){
+            if(prices[i]+1==pre){
+                fi+=1;
+            }
+            else{
+                fi=1;
+            }
+            pre = prices[i];
+            ans += fi;
+        }
+        return ans;
+    }
 }
