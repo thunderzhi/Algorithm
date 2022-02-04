@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class case2096 {
 
-    
+
     public String getDirections(TreeNode root, int startValue, int destValue) {
         List<String> spath = findpath(root,new LinkedList(),startValue);
         List<String> dpath = findpath(root,new LinkedList(),destValue);
