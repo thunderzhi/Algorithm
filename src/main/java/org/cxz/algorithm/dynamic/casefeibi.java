@@ -67,4 +67,44 @@ public class casefeibi {
         }
         return arr[n];
     }
+
+    // matrix acc
+    public final long mod = (long)(1e9+7);
+    public int fib4(int n) {
+        if(n==0||n==1){
+            return n;
+        }
+        long[][] factor = new long[][]{{1,1},{1,0}};
+        //long[][] a = new long[][]{{1},{0}};
+        long[][] b = pow(factor,n-1);
+        //int ans = (int)((b[0][0]*a[0][0]+b[0][1]*a[1][0])%mod);
+        int ans = (int)((b[0][0])%mod);
+        return ans;
+    }
+    public long[][] pow(long[][] x,int n){
+        long[][] ans = new long[][]{{1,0},{0,1}};
+        while(n>0){
+            if((n&1)==1){
+                ans = multipy(ans,x);
+            }
+            x = multipy(x,x);
+            n>>=1;
+        }
+        return ans;
+    }
+
+    public long[][] multipy(long[][] A,long[][]B){
+        long[][] C = new long[2][2];
+        for(int i = 0;i<2;i++){
+            for(int j = 0;j<2;j++){
+                for(int k = 0;k<B.length;k++){
+                    C[i][j]+=A[i][k]*B[k][j];
+                    C[i][j]%=mod;
+                }
+                //C[i][j]=(A[i][0]*B[0][j]+A[i][1]*B[1][j])%mod;
+            }
+        }
+        return C;
+    }
+
 }
