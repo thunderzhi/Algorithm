@@ -48,4 +48,19 @@ public class case283 {
         a[j] = b;
     }
 
+    public void moveZeroes2(int[] nums) {
+        int n = nums.length;
+        if(n<=1) return;
+        int left = 0, right =0;
+        while(right<n){
+            if(nums[right]!=0){
+                if(left!=right){
+                    nums[left]=nums[right];
+                    nums[right]=0;
+                }
+                left++;
+            }
+            right++;
+        }
+    }
 }
