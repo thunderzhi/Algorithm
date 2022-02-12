@@ -1,6 +1,7 @@
 package org.cxz.algorithm.string;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -45,5 +46,48 @@ public class case017 {
             }
         }
         return ans;
+    }
+
+
+
+    //ver 2 backtrack
+    public List<String> ans;
+    public List<String> letterCombinations2(String digits) {
+        String[][] nums = {{},{},{"a","b","c"},
+                {"d","e","f"},{"g","h","i"},{"j","k","l"},
+                {"m","n","o"},{"p","q","r","s"},{"u","v","t"},
+                {"w","x","y","z"}};
+        ans = new ArrayList();
+        if(digits.length()==0) return ans;
+        List<List<String>> list = new ArrayList();
+        for(int i =0;i<digits.length();i++){
+            int ind = digits.charAt(i)-'0';
+            List<String> t = new ArrayList();
+            for(String s : nums[ind]){
+                t.add(s);
+            }
+            list.add(t);
+        }
+        LinkedList<String> track = new LinkedList();
+        backtrack(track,0,list);
+        return ans;
+    }
+
+    public void backtrack(LinkedList<String> track,int ind,List<List<String>> nums){
+        if(track.size()==nums.size()){
+            StringBuffer sb = new StringBuffer();
+            for(String s: track){
+                sb.append(s);
+            }
+            ans.add(sb.toString());
+            return;
+        }
+        List<String> list = nums.get(ind);
+        for(int i = 0;i<list.size();i++){
+            track.add(list.get(i));
+            backtrack(track,ind+1,nums);
+            track.removeLast();
+        }
+        return;
     }
 }
