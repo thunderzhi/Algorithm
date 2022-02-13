@@ -62,12 +62,6 @@ public class case658 {
         }
         return ans;
     }
-    public boolean compare(int a,int b,int x){
-        int adis = getdistance(x,a);
-        int bdis = getdistance(x,b);
-        if(adis<=bdis) return true;
-        return false;
-    }
 
     public int getdistance( int x,int y){
         int dis = 0;
@@ -101,5 +95,41 @@ public class case658 {
             return a>b?(l-1):l;
         }
         return l;
+    }
+
+
+    //ver 2 del n-k
+    public List<Integer> findClosestElements2(int[] arr, int k, int x) {
+        int size = arr.length;
+        int needremove = size-k;
+        int left = 0,right =size-1;
+        while(needremove>0){
+            int ldis = getDis(x,arr[left]);
+            int rdis = getDis(x,arr[right]);
+            if(ldis<=rdis){
+                right--;
+            }
+            else{
+                left++;
+            }
+            needremove--;
+        }
+        List<Integer> ans =new ArrayList();
+        for(int i = left,j=0;i<=right;i++,j++){
+            ans.add(arr[i]);
+        }
+        return ans;
+    }
+
+    public int getDis(int x,int y){
+        int dis = 0;
+        if(x==y) return dis;
+        if(x*y>0){
+            dis = Math.abs(Math.abs(x)-Math.abs(y));
+        }
+        else{
+            dis = Math.abs(x)+Math.abs(y);
+        }
+        return dis;
     }
 }
