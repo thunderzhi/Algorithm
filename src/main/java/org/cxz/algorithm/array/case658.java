@@ -132,4 +132,37 @@ public class case658 {
         }
         return dis;
     }
+    //ver 3
+    public List<Integer> findClosestElements3(int[] arr, int k, int x) {
+        int size = arr.length;
+        int l = 0, r = size - k;
+
+        while (l < r) {
+            // System.out.println(" l:"+l+" r: "+r);
+            int mid = l + r >> 1;
+            // System.out.println(" lv:"+getDis(x,arr[mid])+" rv: "+getDis(x,arr[mid+k]));
+            // System.out.println(" x - arr[mid]:"+(x - arr[mid])+" arr[mid + k] - x: "+ (arr[mid + k] - x));
+            //if ( x - arr[mid] > arr[mid + k] - x) l = mid + 1;
+            if(getDis(x,arr[mid]) == getDis(x,arr[mid+k])){
+                if(x>(arr[mid]+arr[mid+k])/2){
+                    l = mid+1;
+                }
+                else{
+                    r = mid;
+                }
+            }
+            else if (getDis(x,arr[mid]) > getDis(x,arr[mid+k])) {
+                l = mid + 1;
+            }
+            else{
+                r = mid;
+            }
+        }
+        List<Integer> res = new ArrayList<>();
+        for (int i = l; i < l + k; i++) {
+            res.add(arr[i]);
+        }
+        return res;
+    }
+
 }
