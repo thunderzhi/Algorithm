@@ -143,6 +143,7 @@ public class case658 {
             // System.out.println(" lv:"+getDis(x,arr[mid])+" rv: "+getDis(x,arr[mid+k]));
             // System.out.println(" x - arr[mid]:"+(x - arr[mid])+" arr[mid + k] - x: "+ (arr[mid + k] - x));
             //if ( x - arr[mid] > arr[mid + k] - x) l = mid + 1;
+            // this is check which side close to x
             if(getDis(x,arr[mid]) == getDis(x,arr[mid+k])){
                 if(x>(arr[mid]+arr[mid+k])/2){
                     l = mid+1;
