@@ -42,4 +42,18 @@ public class case066 {
         }
         return ans;
     }
+
+    public int[] plusOne2(int[] digits) {
+        int p = digits.length-1;
+        while(p>=0){
+            if(digits[p]!=9){
+                digits[p]++;
+                return digits;
+            }
+            digits[p--]=0;
+        }
+        int[] ans = new int[digits.length+1];
+        ans[0] =1;
+        return ans;
+    }
 }
