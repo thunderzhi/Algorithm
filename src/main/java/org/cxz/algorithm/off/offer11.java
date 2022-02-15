@@ -37,4 +37,32 @@ public class offer11 {
         }
         return min;
     }
+
+
+    public int minArray2(int[] numbers){
+        int left =0,right = numbers.length-1;
+        int min =Integer.MAX_VALUE;
+        if(numbers[right]==numbers[left]) min = numbers[left];
+        while(numbers[left]==numbers[right]&&left<right){
+            left++;
+            right--;
+        }
+        if(left>=right) return Math.min(min,numbers[left]);
+
+        //num[left]!=num[right]
+        //now must num[left]>num[right],
+        int mid = 0;
+        while(left<right){
+            mid = left+(right-left)/2;
+
+            if(numbers[mid]<=numbers[right]){
+                right=mid;
+            }
+            else if(numbers[mid]>numbers[right]){
+                left = mid+1;
+            }
+        }
+        //System.out.println("left:"+left);
+        return Math.min(min,numbers[left]) ;
+    }
 }
