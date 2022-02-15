@@ -13,7 +13,7 @@ import java.util.Queue;
  */
 public class case1306 {
 
-    
+
     public boolean canReach(int[] arr, int start) {
         int n = arr.length;
         int[] dp = new int[n];
