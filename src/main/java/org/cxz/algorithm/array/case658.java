@@ -46,7 +46,10 @@ public class case658 {
                 continue;
             }
         }
-        while(left>0&&compare(arr[left-1],arr[right],x)){
+        while(left>0 ){
+            if(getdistance(x,arr[left-1])>getdistance(x,arr[right])){
+                break;
+            }
             left--;
             right--;
         }
