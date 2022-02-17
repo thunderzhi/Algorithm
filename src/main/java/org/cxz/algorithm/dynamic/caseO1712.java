@@ -45,4 +45,28 @@ public class caseO1712 {
         inorder(root);
         return ret.right;
     }
+
+    // add node at tail
+    //public TreeNode pre;
+    public TreeNode head;
+    public TreeNode convertBiNode2(TreeNode root) {
+        if(root==null) return head;
+        TreeNode vhead = new TreeNode(0);
+        pre = vhead;
+
+        inorder2(root);
+        return vhead.right;
+    }
+
+    public void inorder2(TreeNode root){
+        if(root==null) return;
+        inorder(root.left);
+
+        pre.right = root;
+        pre = root;
+        pre.left = null;
+
+        inorder(root.right);
+        return;
+    }
 }
