@@ -64,4 +64,50 @@ public class caseOff038b {
         }
         return;
     }
+
+        // to be continue
+//    public String[] permutation2(String s){
+//        char[] arr = s.toCharArray();
+//        List<String> list = new ArrayList<>();
+//        list.add(getStr(arr));
+//        nextpermutaion(arr,0,list);
+//        String[] ans = new String[list.size()];
+//        int p =0;
+//        for(String str: list){
+//            ans[p++] = str;
+//        }
+//        return ans;
+//    }
+//
+//
+//    public void nextpermutaion(char[] arr,int start,List<String> list){
+//        if(start==arr.length-1){
+//            return;
+//        }
+//        int p=start;
+//        while(arr[start]==arr[p]){
+//            p++;
+//        }
+//        int next = p;
+//        for(int i= p;i<arr.length;i++){
+//            swap(arr,start,p);
+//            list.add(getStr(arr));
+//            swap(arr,start,p);
+//        }
+//        nextpermutaion(arr,next,list);
+//        return ;
+//    }
+//    public void swap(char[] arr,int i,int j){
+//        char c = arr[i];
+//        arr[i] = arr[j];
+//        arr[j] = c;
+//    }
+//
+//    public String getStr(char[] arr){
+//        StringBuffer sb = new StringBuffer();
+//        for(char c: arr){
+//            sb.append(c);
+//        }
+//        return sb.toString();
+//    }
 }
