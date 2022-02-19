@@ -38,7 +38,7 @@ public class case169 {
         }
         return 0;
     }
-    //Boyer-Moore 
+    //Boyer-Moore
     public int majorityElement2(int[] nums) {
         int count = 0;
         int candidate = 0;
