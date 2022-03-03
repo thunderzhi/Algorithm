@@ -67,4 +67,29 @@ public class case114 {
         }
         return null;
     }
+
+    // ver dfs 20220303
+    public void flatten2(TreeNode root) {
+        preorder(root);
+        return  ;
+    }
+
+    TreeNode pre = null;
+    public void preorder(TreeNode root){
+        if(root==null) return;
+
+        TreeNode left = root.left;
+        TreeNode right = root.right;
+        if(pre==null){
+            pre = root;
+        }
+        if(pre !=null&&pre!=root)
+        {
+            pre.right = root;
+            pre = pre.right;
+        }
+        pre.left =null;
+        preorder(left);
+        preorder(right);
+    }
 }
