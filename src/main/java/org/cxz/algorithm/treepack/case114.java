@@ -92,4 +92,25 @@ public class case114 {
         preorder(left);
         preorder(right);
     }
+
+    // ver recur 20220303
+    public void flatten3(TreeNode root) {
+        if(root == null) return;
+        TreeNode cur = root;
+        TreeNode pre = cur;
+        while (cur != null) {
+            if (cur.left != null) {
+                TreeNode next = cur.left;
+                pre = next;
+                while (pre.right != null) {
+                    pre = pre.right;
+                }
+                pre.right = cur.right;
+                cur.left = null;
+                cur.right = next;
+            }
+            cur = cur.right;
+        }
+        return;
+    }
 }
