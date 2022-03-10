@@ -1,6 +1,7 @@
 package org.cxz.algorithm.dynamic;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -53,5 +54,23 @@ public class case1291 {
                 num+=step[i];
             }
         }
+    }
+
+
+    // ver2 brute simple
+    public List<Integer> sequentialDigits2(int low, int high) {
+        List<Integer> ans = new ArrayList();
+        for(int i=1;i<=9;i++){
+            int num = i;
+            for(int j=i+1;j<=9;j++){
+                num = num*10+j;
+                if(num>high) break;
+                if(num>=low&&num<=high){
+                    ans.add(num);
+                }
+            }
+        }
+        Collections.sort(ans);
+        return ans;
     }
 }
