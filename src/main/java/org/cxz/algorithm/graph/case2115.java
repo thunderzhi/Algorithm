@@ -48,7 +48,7 @@ public class case2115 {
         return flag;
     }
 
-    //ver 2
+    //ver 2   assistant
     public List<String> findAllRecipes2(String[] recipes, List<List<String>> ingredients, String[] supplies) {
         Map<String, Integer> map = new HashMap<>();
         Map<String, Set<String>> g = new HashMap<>();
