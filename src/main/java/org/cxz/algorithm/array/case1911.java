@@ -24,7 +24,7 @@ public class case1911 {
         return ans;
     }
 
-    // ver2 dp 
+    // ver2 dp
     public long maxAlternatingSum(int[] nums) {
         long[][] dp = new long[2][2];
         dp[0][1]=nums[0];
