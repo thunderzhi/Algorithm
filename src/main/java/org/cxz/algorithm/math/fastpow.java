@@ -12,7 +12,7 @@ public class fastpow {
     long binpow(  long x,   long n) {
         long res = 1;
         while (n > 0) {
-            if (n & 1) res = res * x;
+            if ((n & 1)==1) res = res * x;
             x = x * x;
             n >>>= 1;
         }
@@ -24,7 +24,7 @@ public class fastpow {
         x %= m;
         long res = 1;
         while (n > 0) {
-            if (n & 1) res = res * x % m;
+            if ((n & 1)==1) res = res * x % m;
             x = x * x % m;
             n >>>= 1;
         }
