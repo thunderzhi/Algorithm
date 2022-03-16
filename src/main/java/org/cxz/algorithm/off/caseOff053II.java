@@ -17,4 +17,32 @@ public class caseOff053II {
         }
         return nums.length ;
     }
+    // ver 2 OlogN
+    public int missingNumber2(int[] nums) {
+        int n = nums.length;
+        int i = find(nums);
+        int ans = i;
+        if(i==n-1 ){
+            ans = nums[i]==i? n:n-1;
+            return ans;
+        }
+        return ans;
+    }
+
+    public int find(int[] nums){
+        int n = nums.length;
+        int l = 0, r = n-1;
+        int mid = 0;
+        while(l<r){
+            mid = l+(r-l)/2;
+            if(nums[mid]>mid){
+                r = mid;
+            }
+            else{
+                l =mid +1;
+            }
+        }
+        return l;
+    }
+
 }
