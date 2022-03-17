@@ -1,5 +1,6 @@
 package org.cxz.algorithm.off;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
@@ -44,5 +45,33 @@ public class off50 {
             }
         }
         return pq.peek();
+    }
+
+    // ver 2
+    public char firstUniqChar2(String s) {
+        if(s.length()==0) return ' ';
+        int[] firstind = new int[26];
+        Arrays.fill(firstind,-1);
+        char ans = ' ';
+        int max = Integer.MAX_VALUE;
+        for(int i=0;i<s.length();i++){
+            char c = s.charAt(i);
+            if(firstind[c-'a']==max) continue;
+            if(firstind[c-'a']==-1){
+                firstind[c-'a']=i;
+            }
+            else if(firstind[c-'a']>-1&&firstind[c-'a']<max){
+                firstind[c-'a']=max;
+            }
+        }
+        int min = max;
+        for(int i=0;i<26;i++){
+            if(firstind[i]==-1||firstind[i]==max) continue;
+            if(firstind[i]<min){
+                min = firstind[i];
+                ans =(char)(i+'a');
+            }
+        }
+        return ans;
     }
 }
