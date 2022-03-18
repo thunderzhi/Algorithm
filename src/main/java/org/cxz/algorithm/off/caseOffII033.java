@@ -18,7 +18,7 @@ public class caseOffII033 {
         for(int i = 0; i<n;i++){
             String s = strs[i];
             String h = hash(s);
-            if(!map.containsKsumey(h)){
+            if(!map.containsKey(h)){
                 map.put(h,new ArrayList());
             }
             map.get(h).add(s);
