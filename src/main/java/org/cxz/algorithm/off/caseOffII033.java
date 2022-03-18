@@ -11,6 +11,7 @@ import java.util.*;
  */
 public class caseOffII033 {
 
+    //ver 1 sort each string
     public List<List<String>> groupAnagrams(String[] strs) {
         Map<String,List<String>> map = new HashMap();
         int n = strs.length;
