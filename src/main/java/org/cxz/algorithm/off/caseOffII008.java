@@ -1,5 +1,8 @@
 package org.cxz.algorithm.off;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * @author cxz
  * @Title:
@@ -44,4 +47,26 @@ public class caseOffII008 {
         }
         return -1;
     }
+
+    //ver2 slide window
+    public int minSubArrayLen2(int target, int[] nums) {
+
+        int n = nums.length;
+        int ans = Integer.MAX_VALUE;
+        int l=0,r= 0;
+        int sum = 0;
+        while(r<n){
+            sum += nums[r];
+            r++;
+
+            while(l<r&&(sum-nums[l])>=target){
+                sum -= nums[l];
+                l++;
+                //ans = Math.min(ans,r-l);
+            }
+            if(sum>=target){ans = Math.min(ans,r-l);}
+        }
+        return ans==Integer.MAX_VALUE?0:ans;
+    }
+
 }
