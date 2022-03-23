@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class caseOff048 {
 
-    //ver 1 
+    //ver 1
     public int lengthOfLongestSubstring(String s) {
         Map<Character,Integer> map = new HashMap();
         int n = s.length();
