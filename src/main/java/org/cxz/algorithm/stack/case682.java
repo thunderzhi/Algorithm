@@ -1,6 +1,8 @@
 package org.cxz.algorithm.stack;
 
 import javax.lang.model.element.VariableElement;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -44,5 +46,48 @@ public class case682 {
         }
         return  score;
 
+    }
+
+    //ver 2 
+    public int calPoints2(String[] ops) {
+        int ans =0;
+        int n = ops.length;
+        //Deque<String> st = new LinkedList();
+        Deque<Integer> num = new LinkedList();
+        for(int i=0;i<n;i++){
+            ans = calc(ops[i],num,ans);
+        }
+        return ans;
+    }
+
+    public int calc(String s ,Deque<Integer> num,int ans){
+        switch (s){
+            case "+":{
+                int a = num.pop();
+                int b = num.pop();
+                num.push(b);
+                num.push(a);
+                num.push(a+b);
+                ans +=(a+b);
+                break;
+            }
+            case "C":{
+                int a = num.pop();
+                ans -= a;
+                break;
+            }
+            case "D":{
+                int a = num.peek()<<1;
+                ans +=a;
+                num.push(a);
+                break;
+            }
+            default:{
+                int a = Integer.valueOf(s);
+                num.push(a);
+                ans += a;
+            }
+        }
+        return ans;
     }
 }
