@@ -72,4 +72,45 @@ public class case529 {
         return cnt;
     }
     //endregion
+
+
+    // ver2
+    public char[][] updateBoard2(char[][] board, int[] click) {
+        m = board.length;
+        n = board[0].length;
+        dir = new int[][]{{1,0},{0,1},{-1,0},{0,-1},
+                {1,1},{-1,-1},{-1,1},{1,-1}};
+        Queue<Integer[]> queue = new LinkedList();
+        int cx = click[0];
+        int cy = click[1];
+        queue.offer(new Integer[]{cx,cy});
+        if(board[cx][cy]=='M'){
+            board[cx][cy]='X';
+            return board;
+        }
+        board[cx][cy]='B';
+        while(!queue.isEmpty()){
+            int length = queue.size();
+            for(int i = 0;i<length;i++){
+                Integer[] tmp = queue.poll();
+                int x = tmp[0];
+                int y = tmp[1];
+                int cnt = getcnt(x,y,board);
+                if(cnt>0){
+                    board[x][y]=(char)(cnt+'0');
+                    continue;
+                }
+                for(int d =0;d<8;d++){
+                    int xx = x +dir[d][0];
+                    int yy = y +dir[d][1];
+                    if(xx<0||xx>=m) continue;
+                    if(yy<0||yy>=n) continue;
+                    if(board[xx][yy]!='E')continue;
+                    board[xx][yy]='B';
+                    queue.offer(new Integer[]{xx,yy});
+                }
+            }
+        }
+        return board;
+    }
 }
