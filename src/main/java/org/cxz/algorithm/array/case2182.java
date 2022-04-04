@@ -1,5 +1,6 @@
 package org.cxz.algorithm.array;
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
 
 /**
@@ -11,6 +12,7 @@ import java.util.PriorityQueue;
  */
 public class case2182 {
 
+    //region ver1 bymy PriorityQueue
     //ver1 bymy PriorityQueue
     public String repeatLimitedString(String s, int repeatLimit) {
         int[] charcnt = new int[26];
@@ -57,11 +59,48 @@ public class case2182 {
 
             if(charcnt[first]>0) pq.offer(first);
         }
-        return sb.toString()+"x";
+        return sb.toString() ;
     }
 
     public void contact(StringBuffer sb,char c,int cnt){
         for(int i=0;i<cnt;i++) sb.append(c);
         return;
     }
+    //endregion
+
+    //region ver 2 CAP
+    // ver 2
+    public String repeatLimitedString2(String s, int repeatLimit) {
+        int n = s.length();
+        Character[] str = new Character[n + 5];
+        Arrays.fill(str, '\0');
+        for (int i = 0; i < n; i++) str[i] = s.charAt(i);
+        Arrays.sort(str, (c1, c2) -> c2 - c1);
+        StringBuffer temp;
+        StringBuffer ans = new StringBuffer();
+        int i = 0, j = 0;
+        while (i < n) {
+            temp = new StringBuffer();
+            temp.append(str[i]);
+            i++;
+            while (i < n && str[i] == temp.charAt(0)) {
+                temp.append(str[i]);
+                i++;
+            }
+            j = 0;
+            while (temp.length() - j > repeatLimit) {
+                ans.append(temp.substring(j, j + repeatLimit));
+                if (str[i] == '\0') return ans.toString();
+                ans.append(str[i]);
+                i++;
+                j += repeatLimit;
+            }
+            if (j < n) {
+                ans.append(temp.substring(j, Math.min(j + repeatLimit,
+                        temp.length())));
+            }
+        }
+        return ans.toString();
+    }
+    //endregion
 }
