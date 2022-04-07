@@ -35,7 +35,7 @@ public class caseOff031 {
         int i = 0;
         for(int num : pushed) {
             stack.push(num); // num
-            while(!stack.isEmpty() && stack.peek() == popped[i]) { //  
+            while(!stack.isEmpty() && stack.peek() == popped[i]) { //
                 stack.pop();
                 i++;
             }
