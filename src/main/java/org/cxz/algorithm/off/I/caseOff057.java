@@ -12,34 +12,24 @@ import java.util.List;
  */
 public class caseOff057 {
 
-    public int[][] findContinuousSequence(int target) {
-        int sum =0;
-        int n = target/2+1;
-        int l =1,r =1;
-        List<List<Integer>> arr = new ArrayList();
-        while(l<n){
-            if(sum == target){
-                List<Integer> tmp = new ArrayList();
-                for(int i = l ;i<r;i++){
-                    tmp.add(i);
-                }
-                arr.add(tmp);
-                sum +=r;
-                r++;
+    public int[] twoSum(int[] nums, int target) {
+        int[] ans = new int[]{-1,-1};
+        int n = nums.length;
+        if(n<2) return new int[0];
+        int l =0,r=n-1;
+        while(l<r){
+            if(nums[l]+nums[r]== target){
+                ans[0]= nums[l];
+                ans[1]= nums[r];
+                return ans;
             }
-            else if(sum<target){
-                sum += r;
-                r++;
+            else if(nums[l]+nums[r] > target){
+                r--;
             }
             else{
-                sum -=l;
                 l++;
             }
         }
-        int[][] ans = new int[arr.size()][];
-        for(int i = 0;i<arr.size();i++){
-            ans[i] = arr.get(i).stream().mapToInt(Integer::intValue).toArray();
-        }
-        return ans;
+        return new int[0];
     }
 }
