@@ -51,4 +51,50 @@ public class caseOff017 {
         }
         return sb2.toString();
     }
+
+    //ver 2 bignum
+    List<String> list;
+    public int[] printNumbers2(int n) {
+        if(n<1) return new int[0];
+        char[] numchar = new char[10];
+        for(int i=0;i<10;i++){
+            numchar[i] = (char)(i+'0');
+        }
+        list = new ArrayList();
+        char[] number = new char[n];
+        dfs(number,0);
+        //System.out.println(list.toString());
+        int[] ans = list.stream().mapToInt(Integer::parseInt).toArray();
+        //new int[list.size()];
+        return ans;
+    }
+    void dfs(char[] arr,int ind){
+        if(ind==arr.length){
+            String str = getstr(arr);
+            if(str.equals("")) return;
+            list.add(str);
+            return;
+        }
+
+        for(int i=0;i<=9;i++){
+            arr[ind] = (char)(i+'0');
+            dfs(arr,ind+1);
+            arr[ind] ='0';
+        }
+        return;
+    }
+
+    String getstr(char[] arr){
+        StringBuffer sb = new StringBuffer();
+        int p = 0,n = arr.length;
+        while(p<n&&arr[p]=='0'){
+            p++;
+        }
+        if(p==n) return "";
+        while(p<n){
+            sb.append(arr[p++]);
+        }
+        return sb.toString();
+    }
+
 }
