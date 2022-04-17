@@ -39,8 +39,8 @@ public class txtpaliddrome_manacher {
                 d[i] = Math.min(r-i,d[l+r-i]);
             }
             System.out.println("l = " + l+" r = " + r);
-            //while (i-d[i]>=0&&i+d[i]<ns.length()&&ns.charAt(i-d[i])==ns.charAt(i+d[i])){
-            while (i-d[i]>=0&&ns.charAt(i-d[i])==ns.charAt(i+d[i])){
+            while (i-d[i]>=0&&i+d[i]<ns.length()&&ns.charAt(i-d[i])==ns.charAt(i+d[i])){
+            //while (i-d[i]>=0&&ns.charAt(i-d[i])==ns.charAt(i+d[i])){
                 d[i]++;
                 System.out.println(ns);
                 System.out.println("Arrays.toString(d) = " + Arrays.toString(d));
