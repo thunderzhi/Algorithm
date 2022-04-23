@@ -1,17 +1,21 @@
-package org.cxz.algorithm.sort;
+package org.cxz.algorithm.basis.sort;
+
+import java.util.Arrays;
 
 /**
  * @author cxz
  * @Title:
  * @Package
  * @Description:
- * @date 2021/10/16 15:30
+ * @date 2022/4/20 15:49
  */
-public class mergedemo {
+public class MergeSort {
     public static void main(String[] args) {
-
+        int[] arr = new int[]{3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48};
+        System.out.println("arr length is " + arr.length);
+        new MergeSort().merge_sort(arr, 0, arr.length - 1);
+        System.out.println(Arrays.toString(arr));
     }
-
     public void merge_sort(int[] arr,int l ,int r){
         if(l>=r){
             return;
