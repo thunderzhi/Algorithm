@@ -48,4 +48,6 @@ public class case075 {
         a[i]=a[j];
         a[j]=temp;
     }
+
+
 }
