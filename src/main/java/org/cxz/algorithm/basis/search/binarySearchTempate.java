@@ -32,7 +32,7 @@ public class binarySearchTempate {
             else r = mid;
         }
         if(nums[l]>=tar) return l;
-        return l+1;
+        return l+1;//nums.length
     }
 
 

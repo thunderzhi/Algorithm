@@ -23,6 +23,7 @@ public class Quick_Find_Unionset {
     }
 
     void merge(int a,int b){
+        if(color[a]==color[b]) return;
         int cb = color[b];
         for (int i = 0; i <=n; i++) {
             if(color[i]==cb){
