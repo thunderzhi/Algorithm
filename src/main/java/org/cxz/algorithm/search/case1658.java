@@ -15,6 +15,60 @@ public class case1658 {
        int ans  = new case1658().minOperations(arr,4);
         System.out.println("ans = " + ans);
     }
+    // Slidewindow ON
+    public int minOperations2(int[] nums, int x) {
+        long total = 0,cnt =0;
+        int ans = -1,n = nums.length;
+        for(int num :nums) total += num;
+        long tar = total -x;
+        if(tar<0) return ans;
+        if(tar==0) return n;
+        int left = 0,right =0,size=0;
+        while(right<n){
+            cnt += nums[right++];
+            while(right<n&&cnt<tar) cnt += nums[right++];
+            while(left<right&&cnt>tar) cnt -=nums[left++];
+            if(cnt==tar) size = Math.max(right-left,size);
+            if(right>=n) break;
+        }
+        return size==0?-1:n-size;
+    }
+
+    // bymy Time ONlogN Space ON
+    public int minOperations3(int[] nums, int x) {
+        int n = nums.length;
+        long[] presum = new long[n+1];
+        long[] postsum = new long[n+1];
+        for(int i =1;i<n;i++){
+            presum[i] = presum[i-1]+nums[i-1];
+        }
+        for(int i = 0;i<n;i++){
+            postsum[i+1] = postsum[i]+nums[n-1-i];//n-n+1-1
+        }
+        //System.out.println("presum: "+Arrays.toString(presum));
+        // System.out.println("postsum: "+Arrays.toString(postsum));
+        int ans = -1;
+        for(int i=0;i<=n;i++){
+            long a = presum[i];
+            long tar = x-a;
+            int res = find(postsum,tar,n-i);
+            if(res ==-1) continue;
+            int t = i+res;
+            ans =ans<0?t: Math.min(ans,t);
+        }
+        return ans;
+    }
+
+    public int find(long[] nums,long x,int r){
+        int l = 0,mid;
+        while(l<r){
+            mid = l+(r-l)/2;
+            if(nums[mid]==x) return mid;
+            if(nums[mid]>x) r=mid-1;
+            else l = mid+1;
+        }
+        return nums[l]==x?l:-1;
+    }
 
     public int minOperations(int[] nums, int x) {
         int[] presuml = new int[nums.length+1];

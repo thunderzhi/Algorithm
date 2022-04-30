@@ -37,7 +37,7 @@ public class case1310 {
         }
 
     }
-
+    // ver1 fenwick
     public int[] xorQueries(int[] arr, int[][] queries) {
         FenWickTree ft = new FenWickTree(arr.length);
         for (int i = 0; i < arr.length; i++) {
@@ -48,6 +48,18 @@ public class case1310 {
             int r = queries[i][1];
             int l = queries[i][0];
             ans[i] = ft.query(r+1)^ft.query(l);
+        }
+        return ans;
+    }
+    // ver 2  Recommendation
+    public int[] xorQueries2(int[] arr, int[][] queries) {
+        for(int i = 1;i<arr.length;i++){
+            arr[i] ^= arr[i-1];
+        }
+        int n = queries.length;
+        int[] ans = new int[n];
+        for(int i =0;i<n;i++){
+            ans[i] = arr[queries[i][1]]^(queries[i][0]==0?0:arr[queries[i][0]-1]);
         }
         return ans;
     }

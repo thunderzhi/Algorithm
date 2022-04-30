@@ -44,7 +44,7 @@ public class case1109 {
             return query(i)-query(i-1);
         }
     }
-
+    //ver1 cap fenwick
     public int[] corpFlightBookings(int[][] bookings, int n) {
         int[] ans = new int[n];
         Fenwicktree ft = new Fenwicktree(n);
@@ -57,6 +57,24 @@ public class case1109 {
         }
         for (int i = 1; i <=n; i++) {
             ans[i-1] = ft.query(i);
+        }
+        return ans;
+    }
+    //ver2 Recommendation
+    public int[] corpFlightBookings2(int[][] bookings, int n) {
+        int[] ans = new int[n];
+        int m = bookings.length;
+        for(int i = 0;i<m;i++){
+            int[] tmp = bookings[i];
+            int x = tmp[0];
+            int y = tmp[1];
+            int cnt = tmp[2];
+            ans[x-1] += cnt;
+            if(y<n) ans[y] -=cnt;
+        }
+
+        for(int i =1;i<n;i++){
+            ans[i] += ans[i-1];
         }
         return ans;
     }

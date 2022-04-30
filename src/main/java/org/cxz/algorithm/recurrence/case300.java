@@ -30,5 +30,35 @@ public class case300 {
         }
         return ans;
     }
+    // ver 2 binary
+    public int lengthOfLIS2(int[] nums) {
+        int n = nums.length;
+        int[] len = new int[n+1];
+        len[0] = nums[0];
+        int ans = 1;
+        for(int i =1;i<n;i++){
+            int k = nums[i];
+            int ind = find01(len,ans,k);
+            //System.out.println("len: "+Arrays.toString(len));
+            //System.out.println("ans: "+ans +" k: "+k +" ind: "+ind);
+            len[ind] = k;
+            ans = Math.max(ans,ind+1);
+        }
+        return ans;
+    }
+
+    public int find01(int[] arr,int n,int k){
+        int l = 0, r = n,mid;
+        while(l<r){
+            mid = l+(r-l)/2;
+            if(arr[mid]<k){
+                l = mid+1;
+            }
+            else{
+                r = mid;
+            }
+        }
+        return l ;
+    }
 
 }

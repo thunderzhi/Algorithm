@@ -13,6 +13,29 @@ public class case069 {
 
     }
 
+    //ver bymy find first ele > =sqrt(x)
+    public int mySqrt2(int x) {
+        if(x<=1) return x;
+        return find01(x);
+    }
+
+    public int find01(int x){
+        int l =1,r = x/2+1, mid;
+        while(l<r){
+            mid = l+(r-l)/2;
+            //System.out.println("l: "+ l+" r: "+ r+" mid:"+mid);
+            //if((long)mid*mid == x) return mid;
+            if((long)mid*mid >= x){
+                r = mid;
+            }
+            else{
+                l = mid+1;
+            }
+        }
+        if((long)l*l == x) return l;
+        return l-1;
+    }
+
     // classic binary
     public int mySqrt(int x) {
         int l =0;

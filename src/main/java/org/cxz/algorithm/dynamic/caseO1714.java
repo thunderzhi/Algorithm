@@ -1,6 +1,7 @@
 package org.cxz.algorithm.dynamic;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * @author cxz
@@ -71,6 +72,39 @@ public class caseO1714 {
         return c;
     }
 
+    //ver 2 Recommendation PASS
+    public int[] smallestK2(int[] arr, int k) {
+        if(k==0) return new int[0];
+        qs(arr,0,arr.length-1,k);
+        return Arrays.copyOfRange(arr,0,k);
+    }
 
+    public void qs(int[] num ,int l,int r ,int k){
+        if(l>=r) return;
+        int x = l, y = r,i = new Random().nextInt(y-x+1)+x;
+        if(i!= x) swap(num,i,x);
+        int base = num[x];
+        while(x<y){
+            while(x<y&&num[y]>=base)y--;
+            if(x<y) num[x++] = num[y];
+            while(x<y&&num[x]<=base)x++;
+            if(x<y) num[y--] = num[x];
+        }
+        num[x] = base;
+        if(x-l+1==k) return;
+        if(x-l+1>k){
+            qs(num,l,x-1,k);
+        }
+        else{
+            qs(num,x+1,r,k-(x-l+1));
+        }
+        return;
+    }
 
+    public void swap(int[] num ,int i,int j){
+        int t = num[i];
+        num[i] = num[j];
+        num[j] =t;
+        return;
+    }
 }

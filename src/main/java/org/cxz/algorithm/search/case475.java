@@ -49,4 +49,34 @@ public class case475 {
         }
         return head;
     }
+
+    //ver 2 bymy
+    public int findRadius2(int[] houses, int[] heaters) {81
+        Arrays.sort(houses);
+        Arrays.sort(heaters);
+        int ans = -1;
+        for(int  x: houses){
+            int j = find(heaters,x);
+            if(j==heaters.length) j = j-1;
+            int a = Math.abs(heaters[j]-x);
+            int b = j>0?x -heaters[j-1]:a+1;
+            ans = Math.max(ans,Math.min(a,b));
+        }
+        return ans;
+    }
+
+    public int find(int[] nums,int tar){
+        int l = 0, r= nums.length-1,mid;
+        while(l<r){
+            mid = l+(r-l)/2;
+            if(nums[mid]>= tar){
+                r = mid;
+            }
+            else{
+                l = mid+1;
+            }
+        }
+        if(nums[l]>=tar) return l ;
+        return nums.length;
+    }
 }
