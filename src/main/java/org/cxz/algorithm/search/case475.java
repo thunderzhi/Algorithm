@@ -51,7 +51,7 @@ public class case475 {
     }
 
     //ver 2 bymy
-    public int findRadius2(int[] houses, int[] heaters) {81
+    public int findRadius2(int[] houses, int[] heaters) {
         Arrays.sort(houses);
         Arrays.sort(heaters);
         int ans = -1;

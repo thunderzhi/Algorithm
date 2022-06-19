@@ -6,7 +6,7 @@ import org.cxz.algorithm.treepack.TreeNode;
  * @author cxz
  * @Title:
  * @Package
- * @Description:
+ * @Description:   This tree is BST
  * @date 2022/4/1 23:40
  */
 public class caseOff068I {
