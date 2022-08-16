@@ -12,7 +12,19 @@ public class case0000 {
         
         int res = 0&(-0);
         System.out.println("res = " + res);
-        int i = Integer.valueOf("999x");
-        System.out.println("i = " + i);
+        int a = 1;
+        while(a!=0){
+            a &=(a-1);
+            System.out.println("a = " + a);
+        }
+        a = 1&(-1);
+        System.out.println("1 = " + Integer.toBinaryString(1));
+        System.out.println("-1 = " + Integer.toBinaryString(-1));
+        System.out.println("a = " + a);
+//
+//        int i = Integer.valueOf("999x");
+//        System.out.println("i = " + i);
     }
+
+
 }
