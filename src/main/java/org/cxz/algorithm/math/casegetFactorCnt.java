@@ -10,8 +10,11 @@ package org.cxz.algorithm.math;
 public class casegetFactorCnt {
     public static void main(String[] args) {
 
+        long res = getFactorCnt(25,5);
+        System.out.println("res = " + res);
+
     }
-    //get x factor counts in n! x>0,n>0
+    //get x factor counts in n! x>1,n>0
     public static long getFactorCnt(int n,int x){
         long ans = 0;
         while(n!=0){
