@@ -9,7 +9,8 @@ package org.cxz.thread;
  */
 public class TestApp {
     public static void main(String[] args) {
-        Test test = new Test();
+        Object o = new Object();
+        Test test = new Test(o);
         Thread t1 = new Thread(()->{
             test.f1();
 
@@ -17,8 +18,22 @@ public class TestApp {
         Thread t2 = new Thread(()->{
             test.f2();
         },"t2");
+
         t1.start();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         t2.start();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //System.out.println("notifyAll = " );
+        //test.notifytest();
+
         System.out.println("test.a = " + test.a+" test.a = " + test.b+" test.c = " + test.c);
     }
 }
