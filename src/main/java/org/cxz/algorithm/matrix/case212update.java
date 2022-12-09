@@ -1,9 +1,6 @@
 package org.cxz.algorithm.matrix;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author cxz
@@ -17,9 +14,9 @@ public class case212update {
         public class Node{
             public boolean isWord;
             public String val;
-            public Node[] next;
+            public Map<Character, Node> children;
             public Node(){
-                next = new Node[26];
+                children = new HashMap<>();
                 val="";
             }
         }
@@ -31,104 +28,70 @@ public class case212update {
         public void add(String word){
             Node p = root;
             for(int i= 0;i<word.length();i++){
-                int ind = word.charAt(i)-'a';
-                if(p.next[ind]==null){
-                    p.next[ind] = new Node();
+                char c = word.charAt(i);
+//                int ind = word.charAt(i)-'a';
+                if(p.children.get(c)==null){
+                    p.children.put(c,new Node());
                 }
-                p = p.next[ind];
+                p = p.children.get(c);
             }
             p.isWord = true;
             p.val = word;
             return ;
         }
 
-        public Boolean get(String word){
-            Node p = root;
-            for(int i= 0;i<word.length();i++){
-                int ind = word.charAt(i)-'a';
-                if(p.next[ind]==null){
-                    return false;
-                }
-                p = p.next[ind];
-            }
-            if(p.isWord) return true;
-            return false;
-        }
     }
     public int[][] dir;
     public int m,n;
-    public Set<String> set;
     public boolean[][] mark;
     public List<String> findWords(char[][] board, String[] words) {
         Tire tire = new Tire();
         for(String s:words){
-            //System.out.println("get1: "+ tire.get(s));
             tire.add(s);
-            //System.out.println("get2: "+ tire.get(s));
         }
         dir = new int[][]{{0,1},{1,0},{0,-1},{-1,0}};
         m = board.length;
         n = board[0].length;
         mark = new boolean[m][n];
         List<String> ans = new ArrayList();
-        set = new HashSet();
+
         for(int i=0;i<m;i++){
             for(int j =0;j<n;j++){
                 StringBuilder sb = new StringBuilder();
-                dfs(i,j,sb,board,tire,ans);
+                dfs(i,j,sb,board,tire.root,ans);
             }
         }
         return ans;
     }
-    // 超时 2022 1219测试 test case 64
+
     public void dfs(int r,int c ,
-                    StringBuilder sb,char[][] b,Tire tire,List<String> ans){
-        if(sb.length()>10){
+                   StringBuilder sb,char[][] b,Tire.Node parent,List<String> ans){
+        if(sb.length()>10||!parent.children.containsKey(b[r][c])){
             return;
         }
-        sb.append(b[r][c]);
-        String str = sb.toString();
-        //System.out.println("str: "+ str);
-        if(!set.contains(str)&&tire.get(str)){
-            //System.out.println("add: "+ tire.get(str));
-            set.add(str);
-            ans.add(str);
+
+        char ch = b[r][c];
+        Tire.Node cur = parent.children.get(ch);
+        if(cur.isWord){
+            ans.add(cur.val);
+            cur.isWord =false;
+            cur.val="";
         }
+        sb.append(ch);
         mark[r][c] = true;
-        for(int k=0;k<4;k++ ){
-            int x = r + dir[k][0];
-            int y = c + dir[k][1];
-            if(x>=0&&x<m&&y>=0&&y<n&&!mark[x][y]){
-                dfs(x,y,sb,b,tire,ans);
+        if(!cur.children.isEmpty() ){
+            for(int k=0;k<4;k++ ){
+                int x = r + dir[k][0];
+                int y = c + dir[k][1];
+                if(x>=0&&x<m&&y>=0&&y<n&&!mark[x][y]){
+                    dfs(x,y,sb,b,cur,ans);
+                }
             }
         }
         sb.deleteCharAt(sb.length()-1);
         mark[r][c] = false;
-        return;
-    }
-
-    public void dfs2(int r,int c ,
-                   StringBuilder sb,char[][] b,Tire.Node node,List<String> ans){
-        if(sb.length()>10){
-            return;
+        if(cur.children.isEmpty()){
+            parent.children.remove(ch);
         }
-        char ch = b[r][c];
-        int ind = ch-'a';
-        if(node.next[ind]!=null&&node.next[ind].isWord){
-            ans.add(node.next[ind].val);
-            node.next[ind].val="";
-            node.next[ind].isWord=false;
-        }
-        sb.append(ch);
-        mark[r][c] = true;
-        if( tire. ){
-
-        }
-
-
-        sb.deleteCharAt(sb.length()-1);
-        mark[r][c] = false;
-
-
     }
 }
