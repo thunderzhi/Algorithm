@@ -16,9 +16,11 @@ public class case743 {
     public int[] dist;
     public boolean[] vis;
     public int max;
+    public int _n;
     public int networkDelayTime(int[][] times, int n, int k) {
         w = new int[n+1][n+1];
-        max = 1000000007;
+        _n = n;
+        max = 0x3f3f3f3f;
         for(int i=0;i<=n;i++){
             Arrays.fill(w[i],max);
             w[i][i]=0;
@@ -31,7 +33,7 @@ public class case743 {
             w[from][to] = times[i][2];
             //System.out.println("w["+from+"]["+to+"]:"+w[from][to]);
         }
-        dijstra(k,n);
+        dijkstra(k,n);
         int ans =0;
         for(int i = 1;i<=n;i++){
             //System.out.println("dist["+i+"]:"+dist[i]);
@@ -83,5 +85,24 @@ public class case743 {
                 }
             }
         }
+    }
+    //朴素的 Bellman ford DP
+    public void bellmanFord(int k ,int n ){
+        // 原点k 到 节点 j，最多经过i条边 的最短路径为 f[i][j]
+        // 最短路径 最多不会超过 n-1条边，f[n-1][j] 就是存储 原点k 到节点j的最短路径
+        int[][] f = new int[n][n+1];
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(f[i],max);
+        }
+        f[0][k] = 0;
+        for (int i = 1; i <n; i++) {
+            for (int j =1; j <=n ; j++) {
+                for (int l = 1; l <=n; l++) {
+                    f[i][j] =Math.min(f[i][j],f[i-1][l] +w[l][j]);
+                }
+            }
+        }
+        dist = f[n-1].clone();
+        return;
     }
 }
