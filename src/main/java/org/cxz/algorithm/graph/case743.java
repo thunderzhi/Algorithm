@@ -98,11 +98,15 @@ public class case743 {
         for (int i = 1; i <n; i++) {
             for (int j =1; j <=n ; j++) {
                 for (int l = 1; l <=n; l++) {
-                    f[i][j] =Math.min(f[i][j],f[i-1][l] +w[l][j]);
+                    if (w[j][l]>=max) continue;
+                    f[i][l] =Math.min(f[i][l],f[i-1][j] +w[j][l]);
                 }
             }
         }
         dist = f[n-1].clone();
         return;
     }
+
+
+
 }
