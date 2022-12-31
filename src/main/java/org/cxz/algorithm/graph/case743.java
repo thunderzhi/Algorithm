@@ -1,6 +1,7 @@
 package org.cxz.algorithm.graph;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 /**
  * @author cxz
@@ -39,7 +40,7 @@ public class case743 {
         return ans>=max?-1:ans;
     }
 
-    public void dijstra(int k,int n){
+    public void dijkstra(int k,int n){
         Arrays.fill(dist,max);
         dist[k] =0;        
         for(int i =1;i<=n;i++){
@@ -59,5 +60,28 @@ public class case743 {
             //System.out.println("dist:"+Arrays.toString(dist));
         }
         return;
+    }
+    // 堆优化的dijkstra
+    public void dk(int k,int n){
+        Arrays.fill(dist,max);
+        dist[k] =0;
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a,b)->{
+            return a[1]-b[1];
+        });
+        pq.offer(new int[]{k,0});
+        while(!pq.isEmpty()){
+            int[] top = pq.poll();
+            int ind = top[0];
+            if(vis[ind]) continue;
+            vis[ind] = true;
+            //int size = w[ind].length;
+            for (int i = 1; i <= n ; i++) {
+                //if(w[ind][i]>max) continue;
+                if(dist[i]>dist[ind]+w[ind][i]){
+                    dist[i]=dist[ind]+w[ind][i];
+                    pq.offer(new int[]{i,dist[i]});
+                }
+            }
+        }
     }
 }
