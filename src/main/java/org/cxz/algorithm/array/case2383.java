@@ -7,7 +7,7 @@ package org.cxz.algorithm.array;
  * @Description:
  * @date 2023/3/13 17:32
  */
-public class case2383 { 
+public class case2383 {
     public int minNumberOfHours(int initialEnergy, int initialExperience, int[] energy, int[] experience) {
         int sum = 0;
         for (int e : energy) {
