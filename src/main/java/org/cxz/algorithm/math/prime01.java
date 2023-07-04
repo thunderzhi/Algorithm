@@ -43,26 +43,25 @@ public class prime01 {
         return;
     }
 
-
+    // calc all prime less or equal n
+    // this method only mark prime, and add a part of prime to prime array.
+    // so if you want all prime, you should travelsal notprime==false;
     public int Eratosthenes(int n){
         int[] prime = new int[n + 1];
+        boolean[] notprime = new boolean[n+1];
+        int cnt = 0 ; // prime cnt
         for (int i = 2; i*i <= n; i++) {
-            if (prime[i] == 1) {
-                continue;
-            }
-            for (int j = i *i; j <= n; j+=i) {
-                prime[j] = 1;
-            }
-        }
-        for (int i = 2; i <=n; i++) {
-            if (prime[i]==0) {
-                prime[0]++;
+            if (notprime[i]) continue;
+            prime[cnt++] = i;
+            for (int j = i*i; j <= n; j+=i) {
+                notprime[j]=true;
             }
         }
-        return prime[0];
+        return cnt;
     }
 
     //欧拉筛
+    // prime[0] represent numbers of prime
     public int Eulerprime(int n){
         int[] prime = new int[n+1];
         for(int i=2;i<=n;i++){
