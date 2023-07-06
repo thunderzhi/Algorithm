@@ -36,4 +36,24 @@ public class case2178 {
         ans.set(ans.size()-1,finalSum);
         return ans;
     }
+
+    // calc
+    public List<Long> maximumEvenSplit3(long finalSum) {
+        List<Long> ans = new ArrayList();
+        if(finalSum%2==1) return ans;
+        double f = finalSum*1.0+9.0/4.0;
+        long k = (long)(Math.sqrt(f)-3.0/2.0);
+        if((k+1.5)*(k+1.5)-9.0/4.0>= finalSum*1.0){
+            k--;
+        }
+        long tot =0L,limit = 2*k;
+        for(long i = 2;i<=limit;i+=2){
+            ans.add(i);
+            tot+= i;
+        }
+        if(finalSum-tot>limit){
+            ans.add(finalSum-tot);
+        }
+        return ans;
+    }
 }
