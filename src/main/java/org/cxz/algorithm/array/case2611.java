@@ -1,5 +1,7 @@
 package org.cxz.algorithm.array;
 
+import javafx.util.Pair;
+
 import java.util.Arrays;
 
 /**
@@ -15,6 +17,7 @@ public class case2611 {
         int ans = 0;
         int n = reward1.length;
         int[] diffs = new int[n];
+
         for (int i = 0; i < n; i++) {
             ans += reward2[i];
             diffs[i] = reward1[i] - reward2[i];
@@ -22,7 +25,7 @@ public class case2611 {
         Arrays.sort(diffs);
         for (int i = 1; i <= k; i++) {
             ans += diffs[n - i];
-        }
+        } 
         return ans;
     }
 }
