@@ -1,17 +1,13 @@
-package org.cxz.contest.test2023353week;
-
-import java.util.HashSet;
-import java.util.Set;
+package org.cxz.algorithm.array;
 
 /**
  * @author cxz
  * @Title:
  * @Package
  * @Description:
- * @date 2023/7/8 22:29
+ * @date 2023/7/13 15:46
  */
-public class test0709d {
-
+public class case2772 {
     public boolean checkArray(int[] nums, int k) {
         int sum =0, n = nums.length;
         int[] diff = new int[n+2];
