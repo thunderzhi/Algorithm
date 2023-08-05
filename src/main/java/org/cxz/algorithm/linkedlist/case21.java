@@ -12,27 +12,26 @@ public class case21 {
 
     }
 
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        if(l1==null&&l2==null){
-            return null;
-        }
-        ListNode h = new ListNode(0);
-        ListNode p = l1;
-        ListNode q = l2;
-        ListNode t = h;
-
-        while (p!=null&&q!=null){
-            if(p.val<q.val){
-                t.next=p;
-                p=p.next;
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode h3 = new ListNode(-1);
+        ListNode p3 = h3,p1 = list1,p2 = list2;
+        while(p1!=null||p2!=null){
+            if(p1==null||p2==null){
+                p3.next = p1!=null?p1:p2;
+                break;
+            }
+            if(p1.val<=p2.val){
+                p3.next = p1;
+                p1 = p1.next;
             }
             else{
-                t.next = q;
-                q=q.next;
+                p3.next = p2;
+                p2 = p2.next;
             }
-            t =t.next;
+            p3 = p3.next;
+            p3.next = null;
         }
-        t.next = q!=null?q:p;
-        return h.next;
+        return h3.next;
     }
+
 }
