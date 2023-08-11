@@ -4,7 +4,7 @@ package org.cxz.algorithm.off;
  * @author cxz
  * @Title:
  * @Package
- * @Description: tag  linkedlist
+ * @Description: tag  linkedlist  Same as 708 plus
  * @date 2022/1/21 15:18
  */
 public class offer029 {
