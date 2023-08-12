@@ -68,4 +68,39 @@ public class case76 {
         return ans;
 
     }
+    public String minWindow2(String s, String t) {
+        int[] ms = new int[128],mt = new int[128];
+        int n = s.length(),diff = 0;
+        for (int i = 0; i < t.length(); i++) {
+            int idx = (int)t.charAt(i);
+            mt[idx]++;
+            if(mt[idx]==1) diff++;
+        }
+
+        int l = 0,r = 0;
+        String ans = "";
+        while (r<n){
+            char c = s.charAt(r);
+            int idx = (int)c;
+            ms[idx]++;
+            if(ms[idx]==mt[idx]) diff--;
+            while(l<r){
+                char lc = s.charAt(l);
+                idx = (int)lc;
+                if(ms[idx]>mt[idx]){
+                    ms[idx]--;
+                    l++;
+                }
+                else{break;}
+            }
+            if(diff==0){
+                if(ans.length()==0||ans.length()>r-l+1){
+                    ans = s.substring(l,r+1);
+                }
+            }
+            r++;
+        }
+        return ans;
+    }
+
 }
