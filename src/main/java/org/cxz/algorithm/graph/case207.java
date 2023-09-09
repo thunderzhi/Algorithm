@@ -39,4 +39,41 @@ public class case207 {
         }
         return ans==numCourses;
     }
+
+    List<List<Integer>> g;
+    int[] vis;
+    public boolean canFinish2(int numCourses, int[][] prerequisites) {
+        g = new ArrayList();
+        vis = new int[numCourses];
+        for(int i =0;i<numCourses;i++){
+            g.add(new ArrayList());
+        }
+        for(int[] pre: prerequisites){
+            int to = pre[0], from = pre[1];
+            g.get(from).add(to);
+        }
+        boolean ans = true;
+        for(int i =0;i<numCourses&&ans;i++){
+            if(vis[i]==2) continue;
+            ans &= dfs(i);
+        }
+        return ans;
+    }
+    // 1 visiting 2 visited 0 non visit
+    public boolean dfs(int cur){
+        if(vis[cur]==1) return false;
+        if(vis[cur]==2) return true;
+        vis[cur] = 1;
+        List<Integer> list = g.get(cur);
+        boolean res = true;
+        for(int y: list){
+            if(vis[y]==1) return false;
+            if(vis[y]==0){
+                res &= dfs(y);
+                if(!res) return false;
+            }
+        }
+        vis[cur]=2;
+        return res;
+    }
 }
