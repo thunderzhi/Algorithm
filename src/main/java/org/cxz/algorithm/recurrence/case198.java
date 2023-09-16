@@ -39,4 +39,14 @@ public class case198 {
         int N = (n-1)%2;
         return Math.max(dp[N][0],dp[N][1]);
     }
+
+    public int rob2(int[] nums) {
+        int n = nums.length;
+        int[][] f = new int[n+1][2];
+        for(int i = 1;i<=n;i++){
+            f[i][0] =Math.max(f[i-1][1],f[i-1][0]);
+            f[i][1] = f[i-1][0]+nums[i-1];
+        }
+        return Math.max(f[n][0],f[n][1]);
+    }
 }
