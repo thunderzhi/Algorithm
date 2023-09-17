@@ -1,5 +1,7 @@
 package org.cxz.algorithm.recurrence;
 
+import java.util.Arrays;
+
 /**
  * @author cxz
  * @Title:
@@ -86,5 +88,24 @@ public class case213 {
         }
         ans2 = dp[(n - 1)%2][1];
         return Math.max(ans1, ans2);
+    }
+
+    public int rob3(int[] nums) {
+        int n = nums.length;
+        if(n==1) return nums[0];
+        int[] arr1 = Arrays.copyOfRange(nums,0,n-1);
+        int[] arr2 = Arrays.copyOfRange(nums,1,n );
+        int ans = steal(arr1);
+        ans = Math.max(ans,steal(arr2));
+        return ans;
+    }
+    public int steal(int[] arr){
+        int n = arr.length;
+        int[][] f = new int[n+1][2];
+        for(int i = 1;i<=n;i++){
+            f[i][0] = Math.max(f[i-1][0],f[i-1][1]);
+            f[i][1] = f[i-1][0]+arr[i-1];
+        }
+        return Math.max(f[n][0],f[n][1]);
     }
 }
