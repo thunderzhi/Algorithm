@@ -35,4 +35,22 @@ public class case605 {
         }
         return cnt>=n;
     }
+    //20230929
+    public boolean canPlaceFlowers2(int[] flowerbed, int n) {
+        int pre = -2,len = flowerbed.length;
+        int cnt = 0;
+        for(int i=0;i<len;i++){
+            if(flowerbed[i]==1){
+                pre = i;
+            }
+            else{
+                if(pre<i-1&&(i==len-1|| flowerbed[i+1]!=1)){
+                    cnt++;
+                    pre = i;
+                }
+            }
+            if(cnt>=n) return true;
+        }
+        return false;
+    }
 }
