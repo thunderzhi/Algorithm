@@ -37,8 +37,10 @@ sell[i][j] = Math.max(sell[i - 1][j], buy[i - 1][j] + prices[i-1]);
     }
 
     int INF = Integer.MIN_VALUE/2;
+    //No more than j deals in the previous i day
     public int maxProfit2(int k, int[] prices) {
         int n = prices.length;
+        k = Math.min(k,n/2);
         int[][][] f = new int[n+1][k+1][2];
         //1 stock 0 money
         //f[0][0][1] = INF;
