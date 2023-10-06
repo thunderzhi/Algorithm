@@ -40,4 +40,23 @@ public class case714 {
         }
         return dp[(n-1)%2][0];
     }
+
+
+    int INF= Integer.MIN_VALUE/2;
+    public int maxProfit2(int[] prices, int fee) {
+        int n = prices.length;
+        int[][] f = new int[n+1][2];
+        //1 stock 0 money
+        // f[i][0]  = f[i-1][0] or f[i-1][1]+p[i-1]-fee;
+        // f[i][1]  = f[i-1][1] or f[i-1][0]-p[i-1];
+        // (1,0) === (0,0 0) (0,1, INF)+p[0]-fee;
+        //(1,1) === (0,1 ,INF)  or (0,0)-p[0]
+        f[0][1] = INF;
+        for(int i =1;i<=n;i++){
+            int p =prices[i-1];
+            f[i][0] = Math.max( f[i-1][0] ,f[i-1][1]+p-fee);
+            f[i][1] = Math.max( f[i-1][1] ,f[i-1][0]-p);
+        }
+        return f[n][0];
+    }
 }
