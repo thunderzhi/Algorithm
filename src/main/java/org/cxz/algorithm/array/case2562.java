@@ -27,5 +27,5 @@ public class case2562 {
             ans += nums[i];
         }
         return ans;
-    } 
+    }
 }
