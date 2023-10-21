@@ -51,4 +51,23 @@ public class case2316 {
         }
         return res;
     }
+
+    public long countPairs2(int n, int[][] edges) {
+
+        mark = new boolean[n];
+        g = new ArrayList[n];
+        Arrays.setAll(g,x->new ArrayList());
+        for(int[] e: edges){
+            g[e[0]].add(e[1]);
+            g[e[1]].add(e[0]);
+        }
+        long tot = 0,ans =0;
+        for(int i=0;i<n;i++){
+            if(mark[i]) continue;
+            long t = (long)dfs(i);
+            ans += tot*t;
+            tot += t;
+        }
+        return ans;
+    }
 }
