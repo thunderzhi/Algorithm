@@ -1,8 +1,6 @@
 package org.cxz.contest.test104dweek;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * @author cxz
@@ -12,29 +10,39 @@ import java.util.PriorityQueue;
  * @date 2023/5/13 22:28
  */
 public class test0513c {
-    public int matrixSum(int[][] nums) {
-        int rows = nums.length,cols = nums[0].length;
-        List<PriorityQueue<Integer>> list = new ArrayList<>();
-        for (int i = 0; i < rows; i++) {
-            PriorityQueue<Integer> pq = new PriorityQueue<Integer>((a,b)->{
-               return b-a;
-            });
-            for (int j = 0; j < nums[i].length; j++) {
-                pq.offer(nums[i][j]);
+    public long maximumOr(int[] nums, int k) {
+        // 12  8 4 --- 24  16 8
+        // 9   8 1 --- 18  16 2
+        //
+        int n = nums.length;
+        int[] RMax = new int[n];
+        int[] LMax = new int[n];
+        int[] RMin = new int[n];
+        int[] LMin = new int[n];
+        Deque<Integer> queue = new ArrayDeque<>();
+        // max
+        for (int i = 0; i < n; i++) {
+            int cur = nums[i];
+            while(!queue.isEmpty()&& nums[queue.peekLast()]<cur){
+                int pind = queue.pollLast();
+                RMax[pind] = i;
             }
-            list.add(pq);
-        }
-        int ans = 0;
-        for (int ind=0; ind < cols; ind++) {
-            int max = 0;
-            for (int i = 0; i < list.size(); i++) {
-                PriorityQueue<Integer> pq = list.get(i);
-                if(pq.isEmpty()) continue;
-                int p = pq.poll();
-                if(max<p) max = p;
+            if(queue.isEmpty()){
+                LMax[i] = -1;
             }
-            ans+=max;
+            else{
+                if(nums[queue.peekLast()]==cur) LMax[i] = -1;
+                else LMax[i] = queue.peekLast();
+            }
+            queue.offerLast(i);
         }
-        return ans; 
+        while(!queue.isEmpty()){
+            RMax[queue.pollLast()] = n;
+        }
+        return  1;
+
+
+
+
     }
 }
