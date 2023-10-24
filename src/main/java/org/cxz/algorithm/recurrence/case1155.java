@@ -49,6 +49,28 @@ public class case1155 {
         return dp[n%2][target];
     }
 
+    public int numRollsToTarget3(int n, int k, int target) {
+        // n  ~ n*k
+        if(target>n*k||target<n) return 0;
+        long mod = (long)1e9+7;
+        // f[i][j] 前 i个 得到 和为j 的方案数
+        // f[i][j] = f[i-1][j-1]+f[i-1][j-2]..+ f[i-1][j-k]
+        // (1,1) =1 (1,1~k) =1
+        //(1,1) = (0,0)+(0,-1)
+        //(1,2) = (0,1)+(0,0)
+        long[][] f = new long[n+1][target+1];
+        f[0][0]=1;
+        for(int i = 1;i<=n;i++){
+            for(int j =i;j<=Math.min(i*k,target);j++){
+                for(int q = 1;q<=k;q++){
+                    if(j-q<0) break;
 
+                    f[i][j] += f[i-1][j-q];
+                    f[i][j] %= mod;
+                }
+            }
+        }
+        return (int)( f[n][target]%mod);
+    }
 
 }
