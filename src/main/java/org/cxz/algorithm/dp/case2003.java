@@ -11,17 +11,18 @@ import java.util.*;
  */
 public class case2003 {
 
-    Map<Integer, List<Integer>> g = new HashMap<>();
+    // Map<Integer, List<Integer>> g = new HashMap<>();
+    List<Integer>[] g;
     public int[] smallestMissingValueSubtree(int[] parents, int[] nums) {
         int n = nums.length, cur = -1;
         int[] ans = new int[n];
+        g = new ArrayList[n];
+        Arrays.setAll(g, x->{return new ArrayList(); });
         Arrays.fill(ans, 1);
         // 找节点 1, 建图
         for (int i = 0; i < n; i++) {
             if (nums[i] == 1) cur = i;
-            List<Integer> list = g.getOrDefault(parents[i], new ArrayList<>());
-            list.add(i);
-            g.put(parents[i], list);
+            if(parents[i]>=0) g[parents[i]].add(i);
         }
 
         // 若 nums 中没 1, 对应结论一
@@ -44,11 +45,14 @@ public class case2003 {
         return ans;
     }
     void dfs(int idx, int block, int[] nums, boolean[] vis) {
+        if(vis[nums[idx]]) return;
         vis[nums[idx]] = true;
-        List<Integer> list = g.getOrDefault(idx, new ArrayList<>());
+        List<Integer> list = g[idx];
         for (int x : list) {
             if (x == block) continue;
-            dfs(x, block, nums, vis);
+            if(!vis[nums[x]]) dfs(x, block, nums, vis);
         }
     }
+
+
 }
