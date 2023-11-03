@@ -66,4 +66,29 @@ public class case117 {
         }
         return newhead;
     }
+
+    public Node connect2(Node root) {
+        Node p = root;
+        while(p!=null){
+            p = _connect(p);
+        }
+        return root;
+    }
+    public Node _connect(Node root){
+        Node vh = new Node();
+        Node tail = vh, p = root;
+        while(p!=null){
+            Node l = p.left, r =p.right;
+            if(l!=null){
+                tail.next = l;
+                tail = tail.next;
+            }
+            if(r!=null){
+                tail.next = r;
+                tail = tail.next;
+            }
+            p = p.next;
+        }
+        return vh.next;
+    }
 }
