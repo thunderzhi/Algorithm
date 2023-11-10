@@ -67,15 +67,9 @@ All cases classification by array , linkedlist, queue etc.
 
 
 
-Open 
+Open [CONTRIBUTING](https://github.com/thunderzhi/Algorithm/blob/master/CONTRIBUTING.md).
 
-[CONTRIBUTING]: https://github.com/thunderzhi/Algorithm/blob/master/CONTRIBUTING.md
-
-.
-
-Open  
-
-[CODE_OF_CONDUCT]: https://github.com/thunderzhi/Algorithm/blob/master/CODE_OF_CONDUCT.md
+Open [CODE_OF_CONDUCT](https://github.com/thunderzhi/Algorithm/blob/master/CODE_OF_CONDUCT.md) 
 
 
 
